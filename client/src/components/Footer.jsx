@@ -4,12 +4,12 @@ function Footer() {
 
       {/* Top Section */}
       <div
-        className="d-flex align-items-start"
-        style={{ height: '256px', padding: '40px 129px 0 129px' }}
+        className="d-flex align-items-start flex-wrap"
+        style={{ padding: '40px 24px 0 24px', gap: '24px' }}
       >
 
         {/* 1st — Brand */}
-        <div style={{ width: '276px', height: '157px', marginRight: '61px' }}>
+        <div style={{ minWidth: '200px', flex: '1' }}>
           <div className="d-flex align-items-center gap-2 mb-2">
             <div className="bg-primary rounded p-1">
               <span className="text-white">🛍️</span>
@@ -27,7 +27,7 @@ function Footer() {
         </div>
 
         {/* 2nd — About */}
-        <div style={{ width: '81px', height: '137px', marginRight: '64px' }}>
+        <div style={{ minWidth: '80px', flex: '1' }}>
           <h6 className="fw-bold text-white mb-3">About</h6>
           {['About Us', 'Find store', 'Categories', 'Blogs'].map((link, i) => (
             <div key={i}>
@@ -39,7 +39,7 @@ function Footer() {
         </div>
 
         {/* 3rd — Partnership */}
-        <div style={{ width: '90px', height: '137px', marginRight: '64px' }}>
+        <div style={{ minWidth: '80px', flex: '1' }}>
           <h6 className="fw-bold text-white mb-3">Partnership</h6>
           {['About Us', 'Find store', 'Categories', 'Blogs'].map((link, i) => (
             <div key={i}>
@@ -51,7 +51,7 @@ function Footer() {
         </div>
 
         {/* 4th — Information */}
-        <div style={{ width: '108px', height: '137px', marginRight: '78px' }}>
+        <div style={{ minWidth: '100px', flex: '1' }}>
           <h6 className="fw-bold text-white mb-3">Information</h6>
           {['Help Center', 'Money Refund', 'Shipping', 'Contact us'].map((link, i) => (
             <div key={i}>
@@ -63,7 +63,7 @@ function Footer() {
         </div>
 
         {/* 5th — For users */}
-        <div style={{ width: '78px', height: '137px', marginRight: '79px' }}>
+        <div style={{ minWidth: '80px', flex: '1' }}>
           <h6 className="fw-bold text-white mb-3">For users</h6>
           {['Login', 'Register', 'Settings', 'My Orders'].map((link, i) => (
             <div key={i}>
@@ -75,7 +75,7 @@ function Footer() {
         </div>
 
         {/* 6th — Get app */}
-        <div style={{ width: '124px', height: '129px' }}>
+        <div style={{ minWidth: '120px', flex: '1' }}>
           <h6 className="fw-bold text-white mb-3">Get app</h6>
           <div className="d-flex flex-column gap-2">
             <img src="https://placehold.co/124x40" alt="App Store" className="img-fluid rounded" />

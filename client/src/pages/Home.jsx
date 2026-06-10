@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import './Home.mobile.css'
 
 function Home() {
   const categories = [
@@ -71,6 +72,128 @@ const recommendedProducts = [
   return (
     <div className="bg-light">
 
+       {/* ========== MOBILE LAYOUT ========== */}
+    <div className="mobileHome">
+
+      {/* Search Bar */}
+      <div className="mobileSearch">
+        <div style={{ position: 'relative' }}>
+          <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#8B96A5' }}>🔍</span>
+          <input className="mobileSearchInput" placeholder="Search" />
+        </div>
+      </div>
+
+      {/* Category Pills */}
+      <div className="mobileCategoryPills">
+        {['All category', 'Gadgets', 'Clothes', 'Accessories', 'Electronics'].map((pill, i) => (
+          <button key={i} className="mobilePill">{pill}</button>
+        ))}
+      </div>
+
+      {/* Hero Banner */}
+      <div className="mobileBanner">
+        <img src="/src/assets/images/hero-bg.png" alt="banner" className="mobileBannerImg" />
+        <div className="mobileBannerText">
+          <div className="mobileBannerSubtitle">Latest trending</div>
+          <div className="mobileBannerTitle">Electronic items</div>
+          <button className="mobileBannerBtn">Learn more</button>
+        </div>
+      </div>
+
+      {/* Deals & Offers */}
+      <div className="mobileDealsSection">
+        <div className="mobileDealsHeader">
+          <div>
+            <p className="mobileDealsTitle">Deals and offers</p>
+            <p className="mobileDealsSubtitle">Electronic equipments</p>
+          </div>
+          <div className="mobileCountdown">
+            {[
+              { val: time.hours, label: 'Hour' },
+              { val: time.mins, label: 'Min' },
+              { val: time.secs, label: 'Sec' },
+            ].map(({ val, label }) => (
+              <div key={label} className="mobileCountdownBox">
+                <span className="mobileCountdownNum">{String(val).padStart(2, '0')}</span>
+                <span className="mobileCountdownLabel">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mobileDealsScroll">
+          {dealProducts.map((product, i) => (
+            <div key={i} className="mobileDealCard">
+              <img src={product.img} alt={product.name} />
+              <div className="mobileDealName">{product.name}</div>
+              <div className="mobileDealBadge">{product.discount}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Home & Outdoor */}
+      <div className="mobileCategorySection">
+        <div className="mobileCategoryHeader">
+          <p className="mobileCategoryTitle">Home and outdoor</p>
+          <button className="mobileSourceBtn">Source now →</button>
+        </div>
+        <div className="mobileCategoryScroll">
+          {homeOutdoorProducts.map((product, i) => (
+            <div key={i} className="mobileCatCard">
+              <img src={product.img} alt={product.name} />
+              <div className="mobileCatName">{product.name}</div>
+              <div className="mobileCatPrice">From USD {product.price}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Consumer Electronics */}
+      <div className="mobileCategorySection">
+        <div className="mobileCategoryHeader">
+          <p className="mobileCategoryTitle">Consumer electronics</p>
+          <button className="mobileSourceBtn">Source now →</button>
+        </div>
+        <div className="mobileCategoryScroll">
+          {electronicsProducts.map((product, i) => (
+            <div key={i} className="mobileCatCard">
+              <img src={product.img} alt={product.name} />
+              <div className="mobileCatName">{product.name}</div>
+              <div className="mobileCatPrice">From USD {product.price}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Quote Banner */}
+      <div className="mobileQuoteBanner">
+        <div className="mobileQuoteTitle">An easy way to send requests to all suppliers</div>
+        <button className="mobileQuoteBtn">Send inquiry</button>
+      </div>
+
+      {/* Recommended Items */}
+      <div className="mobileRecommendedSection">
+        <h5 className="mobileRecommendedTitle">Recommended items</h5>
+        <div className="mobileRecommendedGrid">
+          {recommendedProducts.map((product, i) => (
+            <div key={i} className="mobileProductCard">
+              <div className="mobileProductCardImg">
+                <img src={product.img} alt={product.name} />
+              </div>
+              <div className="mobileProductCardBody">
+                <div className="mobileProductCardPrice">${product.price.toFixed(2)}</div>
+                <div className="mobileProductCardName">{product.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    {/* ========== DESKTOP LAYOUT ========== */}
+    <div className="desktopHome">
+      {/* ALL YOUR EXISTING DESKTOP JSX GOES HERE */}
       {/* Hero Section */}
       <div className="container py-3">
         <div className="row g-2">
@@ -442,6 +565,12 @@ const recommendedProducts = [
           </div>
         </div>
     </div>
+    </div>
+
+
+
+
+      
   )
 }
 

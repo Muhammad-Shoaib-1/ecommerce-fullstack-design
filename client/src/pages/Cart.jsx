@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 import styles from './Cart.module.css'
 
 const initialCartItems = [
-  { id: 1, name: 'T-shirts with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Artel Market', price: 78.99, qty: 9, img: '/src/assets/images/cart1.png' },
-  { id: 2, name: 'T-shirts with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Best factory LLC', price: 39.00, qty: 3, img: '/src/assets/images/cart2.png' },
-  { id: 3, name: 'T-shirts with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Artel Market', price: 170.50, qty: 1, img: '/src/assets/images/cart3.png' },
+  { id: 1, name: 'Bags with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Artel Market', price: 78.99, qty: 9, img: '/src/assets/images/bag.png' },
+  { id: 2, name: 'Branded coat for men', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Best factory LLC', price: 39.00, qty: 3, img: '/src/assets/images/coat.png' },
+  { id: 3, name: 'T-shirts with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Artel Market', price: 170.50, qty: 1, img: '/src/assets/images/Sleeve T-shirt.jpg' },
 ]
 
 const savedItems = [
-  { id: 1, name: 'GoPro HERO6 4K Action Camera - Black', price: 99.50, img: '/src/assets/images/saved1.png' },
-  { id: 2, name: 'GoPro HERO6 4K Action Camera - Black', price: 99.50, img: '/src/assets/images/saved2.png' },
-  { id: 3, name: 'GoPro HERO6 4K Action Camera - Black', price: 99.50, img: '/src/assets/images/saved3.png' },
-  { id: 4, name: 'GoPro HERO6 4K Action Camera - Black', price: 99.50, img: '/src/assets/images/saved4.png' },
+  { id: 1, name: 'GoPro HERO6 4K Action Camera - Black', price: 99.50, img: '/src/assets/images/GoPro Cameras.png' },
+  { id: 2, name: 'Hp Core i5 7th gen', price: 99.50, img: '/src/assets/images/laptops.png' },
+  { id: 3, name: 'Kitchen Mixer', price: 99.50, img: '/src/assets/images/kitchen mixer.png' },
+  { id: 4, name: 'Techno Spark Neo7', price: 99.50, img: '/src/assets/images/consumer Mobile.png' },
 ]
 
 function Cart() {

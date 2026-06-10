@@ -1,0 +1,487 @@
+@media (max-width: 768px) {
+
+  /* Hide desktop-only sections */
+  .heroSection,
+  .dealsSectionDesktop,
+  .quoteBannerDesktop,
+  .suppliersDesktop,
+  .categorySectionDesktop {
+    display: none;
+  }
+
+  /* General */
+  .bg-light {
+    background: #F7FAFC !important;
+  }
+
+  /* Search Bar */
+  .mobileSearch {
+    padding: 8px 15px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileSearchInput {
+    width: 100%;
+    height: 40px;
+    background: #F7FAFC;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    padding: 0 10px 0 36px;
+    font-size: 16px;
+    color: #8B96A5;
+    position: relative;
+  }
+
+  /* Category Pills */
+  .mobileCategoryPills {
+    display: flex;
+    gap: 8px;
+    padding: 10px 15px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileCategoryPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobilePill {
+    height: 36px;
+    padding: 0 14px;
+    background: #EFF2F4;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #0D6EFD;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* Hero Banner */
+  .mobileBanner {
+    width: 100%;
+    height: 180px;
+    background: #0D6EFD;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    padding: 24px 22px;
+  }
+
+  .mobileBannerImg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+
+  .mobileBannerText {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mobileBannerSubtitle {
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+  }
+
+  .mobileBannerTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin-bottom: 16px;
+  }
+
+  .mobileBannerBtn {
+    height: 30px;
+    padding: 0 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.25);
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    font-size: 13px;
+    color: #0D6EFD;
+    cursor: pointer;
+  }
+
+  /* Deals Section Mobile */
+  .mobileDealsSection {
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+    padding: 16px 0;
+  }
+
+  .mobileDealsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 16px;
+    margin-bottom: 12px;
+  }
+
+  .mobileDealsTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin: 0;
+  }
+
+  .mobileDealsSubtitle {
+    font-size: 13px;
+    color: #505050;
+    margin: 0;
+  }
+
+  .mobileCountdown {
+    display: flex;
+    gap: 4px;
+  }
+
+  .mobileCountdownBox {
+    width: 45px;
+    height: 44px;
+    background: #EFF2F4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobileCountdownNum {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #8B96A5;
+  }
+
+  .mobileCountdownLabel {
+    font-size: 11px;
+    line-height: 13px;
+    color: #8B96A5;
+  }
+
+  .mobileDealsScroll {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 0;
+  }
+
+  .mobileDealsScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobileDealCard {
+    width: 140px;
+    height: 180px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .mobileDealCard img {
+    width: 98px;
+    height: 98px;
+    object-fit: contain;
+  }
+
+  .mobileDealName {
+    font-size: 13px;
+    line-height: 16px;
+    color: #1C1C1C;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .mobileDealBadge {
+    margin-top: 6px;
+    height: 28px;
+    padding: 0 13px;
+    background: #FFE3E3;
+    border-radius: 29px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #EB001B;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Category Sections Mobile */
+  .mobileCategorySection {
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+    padding: 16px 0;
+  }
+
+  .mobileCategoryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    margin-bottom: 12px;
+  }
+
+  .mobileCategoryTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin: 0;
+  }
+
+  .mobileSourceBtn {
+    background: none;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    color: #0D6EFD;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .mobileCategoryScroll {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 0;
+  }
+
+  .mobileCategoryScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobileCatCard {
+    width: 140px;
+    height: 160px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .mobileCatCard img {
+    width: 98px;
+    height: 98px;
+    object-fit: contain;
+  }
+
+  .mobileCatName {
+    font-size: 13px;
+    line-height: 16px;
+    color: #1C1C1C;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .mobileCatPrice {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  /* Quote Banner Mobile */
+  .mobileQuoteBanner {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(94.99deg, #2C7CF1 7.19%, rgba(0, 209, 255, 0.5) 89.49%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 23px;
+    gap: 12px;
+  }
+
+  .mobileQuoteTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    width: 217px;
+  }
+
+  .mobileQuoteBtn {
+    width: 98px;
+    height: 32px;
+    background: linear-gradient(180deg, #127FFF 0%, #0067FF 100%);
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 13px;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  /* Recommended Items Mobile */
+  .mobileRecommendedSection {
+    padding: 16px;
+    background: #F7FAFC;
+  }
+
+  .mobileRecommendedTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin-bottom: 12px;
+  }
+
+  .mobileRecommendedGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mobileProductCard {
+    width: 165px;
+    height: 240px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobileProductCardImg {
+    width: 100%;
+    height: 157px;
+    background: #B5B5B5;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mobileProductCardImg img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+
+  .mobileProductCardBody {
+    padding: 8px 10px;
+    flex-grow: 1;
+  }
+
+  .mobileProductCardPrice {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #1C1C1C;
+  }
+
+  .mobileProductCardName {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+    margin-top: 4px;
+  }
+
+  /* Hide newsletter and footer on mobile or simplify */
+  .container {
+    padding: 0 !important;
+  }
+
+    .mobileHome {
+    display: none;
+    }
+
+    .desktopHome {
+    display: block;
+    }
+
+    @media (max-width: 768px) {
+    .mobileHome {
+        display: block;
+    }
+    .desktopHome {
+        display: none;
+    }
+    }
+
+}
+
+@media (max-width: 768px) {
+
+  /* Footer */
+  footer {
+    height: auto !important;
+    padding: 24px 16px !important;
+  }
+
+  footer > div:first-child {
+    flex-direction: column !important;
+    height: auto !important;
+    padding: 0 !important;
+    gap: 24px;
+  }
+
+  /* All footer columns full width */
+  footer > div:first-child > div {
+    width: 100% !important;
+    height: auto !important;
+    margin-right: 0 !important;
+  }
+
+  /* Brand section */
+  footer .fw-bold.text-white.fs-5 {
+    font-size: 18px !important;
+  }
+
+  /* Footer links grid */
+  footer .d-flex.align-items-start {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px;
+    padding: 0 !important;
+    height: auto !important;
+  }
+
+  /* Bottom bar */
+  footer > div:last-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px;
+    padding: 16px 0 0 0 !important;
+    height: auto !important;
+  }
+
+  /* Newsletter */
+  .bg-white.border-top.border-bottom {
+    height: auto !important;
+    padding: 24px 16px !important;
+  }
+
+  .bg-white.border-top.border-bottom .d-flex {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .bg-white.border-top.border-bottom input {
+    width: 100% !important;
+  }
+}
