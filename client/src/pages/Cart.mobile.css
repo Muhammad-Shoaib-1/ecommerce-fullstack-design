@@ -1,0 +1,343 @@
+/* =============================================
+   Cart.mobile.css
+   Show/hide control (must be at top, no media wrapper)
+   ============================================= */
+
+.mobileCart {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileCart {
+    display: block !important;
+  }
+}
+
+/* =============================================
+   All mobile styles inside one media query
+   ============================================= */
+@media (max-width: 768px) {
+
+  .mobileCart {
+    background: #F7FAFC;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Mobile Header ── */
+  .mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 56px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.25);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .mobileHeaderIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1C1C1C;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+  }
+
+  .mobileHeaderTitle {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin-right: 24px; /* balance the back icon width */
+  }
+
+  /* ── Cart Item (Product/order) ── */
+  .mobileCartItem {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #EFF2F4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobileCartItemTop {
+    display: flex;
+    gap: 12px;
+  }
+
+  .mobileCartItemImg {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    background: #F7F7F7;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mobileCartItemImg img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+
+  .mobileCartItemInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .mobileCartItemName {
+    font-size: 16px;
+    line-height: 19px;
+    color: #1C1C1C;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .mobileCartItemSpecs {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+  }
+
+  .mobileCartItemMore {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    color: #8B96A5;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .mobileCartItemBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Qty stepper */
+  .mobileQtyStepper {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .mobileQtyBtn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: none;
+    color: #8B96A5;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .mobileQtyValue {
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1C1C1C;
+  }
+
+  .mobileCartItemPrice {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #1C1C1C;
+  }
+
+  /* ── Order Summary ── */
+  .mobileSummary {
+    padding: 16px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobileSummaryRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .mobileSummaryLabel {
+    color: #8B96A5;
+  }
+
+  .mobileSummaryValue {
+    color: #1C1C1C;
+    font-weight: 500;
+  }
+
+  .mobileSummaryTotalRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+  }
+
+  .mobileCheckoutBtn {
+    width: 100%;
+    height: 40px;
+    background: #00B517;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    margin-top: 4px;
+  }
+
+  /* ── Deals and offers (Mobile/item-list) ── */
+  .mobileDealsSection {
+    padding: 16px 10px;
+  }
+
+  .mobileDealsTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin-bottom: 12px;
+    padding-left: 6px;
+  }
+
+  .mobileItemList {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .mobileItemListImg {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mobileItemListImg img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+
+  .mobileItemListBody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .mobileItemListPrice {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #333333;
+  }
+
+  .mobileItemListName {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .mobileItemListActions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .mobileItemListBtnSave {
+    height: 28px;
+    padding: 0 10px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0D6EFD;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.08);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .mobileItemListBtnRemove {
+    height: 28px;
+    padding: 0 10px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #FA3434;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.08);
+    font-family: 'Inter', sans-serif;
+  }
+
+}

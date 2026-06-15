@@ -1,0 +1,409 @@
+.mobileProductListing {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileProductListing {
+    display: block !important;
+  }
+
+  /* Hide desktop layout */
+  .pageWrapper .container > .mainLayout {
+    display: none !important;
+  }
+  .pageWrapper .breadcrumb {
+    display: none !important;
+  }
+
+  /* ── Page background ── */
+  .mobileProductListing {
+    background: #F7FAFC;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Search bar ── */
+  .mobileSearch {
+    padding: 8px 15px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileSearchInput {
+    width: 100%;
+    height: 40px;
+    background: #F7FAFC;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    padding: 0 10px 0 36px;
+    font-size: 16px;
+    color: #8B96A5;
+    outline: none;
+  }
+
+  .mobileSearchIcon {
+    position: absolute;
+    left: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8B96A5;
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .mobileSearchWrapper {
+    position: relative;
+  }
+
+  /* ── Category pills ── */
+  .mobileCategoryPills {
+    display: flex;
+    gap: 8px;
+    padding: 10px 15px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileCategoryPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobilePill {
+    height: 36px;
+    padding: 0 14px;
+    background: #EFF2F4;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #0D6EFD;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Sort / Filter / View toggle bar ── */
+  .mobileToolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileToolbarBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 12px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1C1C1C;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .mobileViewToggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .mobileViewBtn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #DEE2E7;
+    background: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1C1C1C;
+  }
+
+  .mobileViewBtn:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+
+  .mobileViewBtn:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+
+  .mobileViewBtnActive {
+    background: #EFF2F4;
+  }
+
+  /* ── Active filter tags ── */
+  .mobileFilterTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 15px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileFilterTag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 6px 0 10px;
+    background: #FFFFFF;
+    border: 1px solid #0D6EFD;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #505050;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .mobileFilterTagClose {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #8B96A5;
+    font-size: 12px;
+    padding: 0;
+  }
+
+  .mobileClearAll {
+    height: 32px;
+    padding: 0 12px;
+    background: none;
+    border: 1px solid #DEE2E7;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #FA3434;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Product list (list view) ── */
+  .mobileProductList {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobileItemCard {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    display: flex;
+    padding: 8px;
+    gap: 10px;
+    position: relative;
+  }
+
+  .mobileItemCardImg {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #FFFFFF;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  .mobileItemCardBody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .mobileItemCardName {
+    font-size: 16px;
+    line-height: 19px;
+    color: #505050;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mobileItemCardPrice {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: #333333;
+  }
+
+  .mobileItemCardRating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .mobileItemCardStars {
+    display: flex;
+  }
+
+  .mobileItemCardRatingText {
+    color: #FF9017;
+    font-size: 13px;
+  }
+
+  .mobileItemCardDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #DEE2E7;
+  }
+
+  .mobileItemCardOrders {
+    color: #8B96A5;
+    font-size: 13px;
+  }
+
+  .mobileItemCardShipping {
+    color: #00B517;
+    font-size: 13px;
+  }
+
+  .mobileItemCardActions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .mobileItemCardBtnSave {
+    height: 28px;
+    padding: 0 10px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0D6EFD;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.08);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .mobileItemCardBtnRemove {
+    height: 28px;
+    padding: 0 10px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #FA3434;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.08);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Product grid (grid view) ── */
+  .mobileProductGrid {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mobileGridCard {
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobileGridCardImgWrap {
+    width: 100%;
+    height: 140px;
+    background: #B5B5B5;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mobileGridCardImg {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+
+  .mobileGridCardBody {
+    padding: 8px 10px;
+  }
+
+  .mobileGridCardPrice {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #1C1C1C;
+  }
+
+  .mobileGridCardName {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+    margin-top: 4px;
+  }
+
+  /* ── Pagination ── */
+  .mobilePagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px;
+    background: #FFFFFF;
+    border-top: 1px solid #DEE2E7;
+  }
+
+  .mobilePageBtn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1C1C1C;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .mobilePageBtnActive {
+    background: #0D6EFD;
+    border-color: #0D6EFD;
+    color: #FFFFFF;
+  }
+
+  .mobileShowSelect {
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1C1C1C;
+    background: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+  }
+
+}

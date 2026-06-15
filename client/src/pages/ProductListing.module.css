@@ -1,3 +1,18 @@
+/* ===== DESKTOP SHOW/HIDE ===== */
+.desktopProductListing { display: block; }
+.mobileProductListing { display: none; }
+
+@media (max-width: 768px) {
+  .desktopProductListing { display: none; }
+  .mobileProductListing { display: block; }
+
+  .pageWrapper {
+    display: none;
+  }
+}
+
+
+
 /* Page */
 .pageWrapper {
   background: #F7FAFC;

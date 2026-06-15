@@ -1,0 +1,145 @@
+/* =============================================
+   MobileSidebar.css
+   Slide-out menu, mobile only (≤768px)
+   Desktop never renders this component, but
+   we still guard with a media query for safety.
+   ============================================= */
+
+.mobileSidebarOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(99, 99, 99, 0.6);
+  z-index: 1000;
+  display: flex;
+}
+
+.mobileSidebar {
+  width: 280px;
+  max-width: 80%;
+  height: 100%;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* ── Header ── */
+.mobileSidebarHeader {
+  position: relative;
+  background: #EFF2F4;
+  padding: 20px;
+}
+
+.mobileSidebarClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  opacity: 0.5;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mobileSidebarAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #BDC4CD;
+  margin-bottom: 16px;
+}
+
+.mobileSidebarAuth {
+  font-size: 16px;
+  line-height: 19px;
+  color: #1C1C1C;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobileSidebarAuthLink {
+  color: #1C1C1C;
+  text-decoration: none;
+}
+
+.mobileSidebarAuthSep {
+  color: #DEE2E7;
+}
+
+/* ── Nav items ── */
+.mobileSidebarNav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.mobileSidebarNavItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #1C1C1C;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.mobileSidebarNavItem:hover {
+  background: #F7FAFC;
+}
+
+.mobileSidebarNavIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B96A5;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.mobileSidebarNavLabel {
+  flex: 1;
+}
+
+/* ── Divider ── */
+.mobileSidebarDivider {
+  height: 1px;
+  background: #DEE2E7;
+  margin: 0 10px;
+}
+
+/* ── Footer links ── */
+.mobileSidebarFooterNav {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 22px;
+  gap: 24px;
+}
+
+.mobileSidebarFooterLink {
+  font-size: 16px;
+  line-height: 19px;
+  color: #1C1C1C;
+  text-decoration: none;
+}

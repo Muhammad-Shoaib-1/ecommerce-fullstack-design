@@ -3,72 +3,68 @@
 }
 
 
-
-/* Show mobile navbar only on mobile */
-@media (max-width: 768px) {
-  
-  /* Mobile Navbar */
-.mobile-navbar {
-  /* display: flex; */
-  width: 100%;
-  height: 56px;
-  background: #FFFFFF;
-  border-bottom: 1px solid #DEE2E7;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.mobile-navbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  height: 100%;
-}
-
-.mobile-logo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-}
-
-.mobile-logo-icon {
-  background: #0D6EFD;
-  border-radius: 6px;
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mobile-logo-text {
-  font-weight: 700;
-  font-size: 18px;
-  color: #0D6EFD;
-}
-
-.mobile-navbar-icons {
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-  gap: 16px;
-}
-}
-
-
-
-
-
-
 /* Hide/show desktop vs mobile */
 .desktop-only {
   display: block;
 }
 
+.mobile-navbar {
+  display: none;
+}
+
+/* Show mobile navbar only on mobile */
 @media (max-width: 768px) {
+
   .desktop-only {
     display: none;
+  }
+  
+  /* Mobile Navbar */
+  .mobile-navbar {
+    /* display: flex; */
+    width: 100%;
+    height: 56px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mobile-navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 100%;
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+
+  .mobile-logo-icon {
+    background: #0D6EFD;
+    border-radius: 6px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-logo-text {
+    font-weight: 700;
+    font-size: 18px;
+    color: #0D6EFD;
+  }
+
+  .mobile-navbar-icons {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 16px;
   }
 }

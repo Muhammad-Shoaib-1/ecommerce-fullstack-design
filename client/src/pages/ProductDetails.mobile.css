@@ -1,0 +1,386 @@
+/* =============================================
+   ProductDetails.mobile.css
+   Show/hide control (must be at top, no media wrapper)
+   ============================================= */
+
+.mobileProductDetails {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileProductDetails {
+    display: block !important;
+  }
+}
+
+/* =============================================
+   All mobile styles inside one media query
+   ============================================= */
+@media (max-width: 768px) {
+
+  .mobileProductDetails {
+    background: #F7FAFC;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Mobile Header ── */
+  .mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 56px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .mobileHeaderIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1C1C1C;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobileHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* ── Image Gallery ── */
+  .mobileGallery {
+    position: relative;
+    width: 100%;
+    height: 305px;
+    background: #F0F0F0;
+  }
+
+  .mobileGalleryMainImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #F0F0F0;
+  }
+
+  .mobileGalleryArrows {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 6px 10px;
+  }
+
+  .mobileGalleryArrowBtn {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  /* ── Title + Price ── */
+  .mobileProductTitle {
+    padding: 16px 16px 0;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #1C1C1C;
+  }
+
+  .mobilePriceRow {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 8px 16px 0;
+  }
+
+  .mobilePrice {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: #FA3434;
+  }
+
+  .mobilePriceMeta {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+  }
+
+  /* ── Actions: Add to cart + favorite ── */
+  .mobileActions {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .mobileAddToCartBtn {
+    flex: 1;
+    height: 40px;
+    background: linear-gradient(180deg, #127FFF 0%, #0067FF 100%);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .mobileFavoriteBtn {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0D6EFD;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  /* ── Features (Condition, Material, Category, Item num) ── */
+  .mobileFeatures {
+    padding: 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+  }
+
+  .mobileFeatureRow {
+    display: flex;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .mobileFeatureLabel {
+    width: 120px;
+    color: #8B96A5;
+    flex-shrink: 0;
+  }
+
+  .mobileFeatureValue {
+    color: #505050;
+  }
+
+  /* ── Description ── */
+  .mobileDescription {
+    padding: 16px;
+    background: #FFFFFF;
+  }
+
+  .mobileDescriptionText {
+    font-size: 16px;
+    line-height: 22px;
+    color: #505050;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mobileDescriptionTextExpanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  .mobileReadMore {
+    margin-top: 8px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    color: #0D6EFD;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Seller card ── */
+  .mobileSellerCard {
+    margin: 16px 10px;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobileSellerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 24px;
+    color: #505050;
+  }
+
+  .mobileSellerRowLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobileSellerFlag {
+    width: 20px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+  }
+
+  .mobileSellerBadge {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: #C6F3F1;
+    color: rgba(76, 167, 167, 0.8);
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mobileSellerChevron {
+    color: #8B96A5;
+    font-size: 18px;
+  }
+
+  .mobileSellerDivider {
+    border: none;
+    border-top: 1px solid #DEE2E7;
+    margin: 0;
+  }
+
+  /* ── Rating row (Group 1023) ── */
+  .mobileRatingRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DEE2E7;
+    flex-wrap: wrap;
+  }
+
+  .mobileRatingStars {
+    display: flex;
+    gap: 2px;
+    font-size: 14px;
+  }
+
+  .mobileRatingDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #DBDBDB;
+  }
+
+  .mobileRatingMeta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #787A80;
+  }
+
+  /* ── Deals and offers / related products ── */
+  .mobileRelatedSection {
+    padding: 16px 10px;
+  }
+
+  .mobileRelatedTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1C1C1C;
+    margin-bottom: 12px;
+    padding-left: 6px;
+  }
+
+  .mobileRelatedGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mobileRelatedCard {
+    width: 100%;
+    height: 220px;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E7;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobileRelatedCardImgWrap {
+    width: 100%;
+    height: 140px;
+    background: #B5B5B5;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .mobileRelatedCardImg {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+
+  .mobileRelatedCardBody {
+    padding: 8px 10px;
+  }
+
+  .mobileRelatedCardPrice {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #1C1C1C;
+  }
+
+  .mobileRelatedCardName {
+    font-size: 13px;
+    line-height: 16px;
+    color: #8B96A5;
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+}

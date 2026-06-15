@@ -1,3 +1,6 @@
+.mobileHome {
+  display: none;
+}
 @media (max-width: 768px) {
 
   /* Hide desktop-only sections */
@@ -7,6 +10,10 @@
   .suppliersDesktop,
   .categorySectionDesktop {
     display: none;
+  }
+
+  .mobileHome {
+    display: block !important;
   }
 
   /* General */
@@ -400,28 +407,6 @@
     color: #8B96A5;
     margin-top: 4px;
   }
-
-  /* Hide newsletter and footer on mobile or simplify */
-  .container {
-    padding: 0 !important;
-  }
-
-    .mobileHome {
-    display: none;
-    }
-
-    .desktopHome {
-    display: block;
-    }
-
-    @media (max-width: 768px) {
-    .mobileHome {
-        display: block;
-    }
-    .desktopHome {
-        display: none;
-    }
-    }
 
 }
 

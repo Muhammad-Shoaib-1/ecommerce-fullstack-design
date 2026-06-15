@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './ProductListing.module.css'
+import './ProductListing.mobile.css'
 
 const products = [
   { id: 1, name: 'Canon Camera EOS 2000, Black 10x zoom', price: 998, oldPrice: 1128, rating: 4, orders: 154, shipping: 'Free Shipping', img: '/src/assets/images/product1.png' },
@@ -38,6 +39,7 @@ function ProductListing() {
   }
 
   return (
+    <> 
     <div className={styles.pageWrapper}>
 
       {/* Breadcrumb */}
@@ -346,6 +348,141 @@ function ProductListing() {
         </div>
       </div>
     </div>
+
+    {/* ========== MOBILE LAYOUT ========== */}
+    <div className="mobileProductListing">
+
+      {/* Search Bar */}
+      <div className="mobileSearch">
+        <div className="mobileSearchWrapper">
+          <span className="mobileSearchIcon">🔍</span>
+          <input className="mobileSearchInput" placeholder="Search" />
+        </div>
+      </div>
+
+      {/* Category Pills */}
+      <div className="mobileCategoryPills">
+        {['All category', 'Gadgets', 'Clothes', 'Accessories', 'Electronics'].map((pill, i) => (
+          <button key={i} className="mobilePill">{pill}</button>
+        ))}
+      </div>
+
+      {/* Toolbar: Sort, Filter, View toggle */}
+      <div className="mobileToolbar">
+        <button className="mobileToolbarBtn">Featured ▾</button>
+        <button className="mobileToolbarBtn">Filter ⚙</button>
+        <div className="mobileViewToggle">
+          <button
+            className={`mobileViewBtn ${viewMode === 'grid' ? 'mobileViewBtnActive' : ''}`}
+            onClick={() => setViewMode('grid')}
+            title="Grid view"
+          >
+            ⊞
+          </button>
+          <button
+            className={`mobileViewBtn ${viewMode === 'list' ? 'mobileViewBtnActive' : ''}`}
+            onClick={() => setViewMode('list')}
+            title="List view"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+
+      {/* Active Filter Tags */}
+      {activeFilters.length > 0 && (
+        <div className="mobileFilterTags">
+          {activeFilters.map((filter, i) => (
+            <div key={i} className="mobileFilterTag">
+              <span>{filter}</span>
+              <button className="mobileFilterTagClose" onClick={() => removeFilter(filter)}>✕</button>
+            </div>
+          ))}
+          <button className="mobileClearAll" onClick={() => setActiveFilters([])}>
+            Clear all filter
+          </button>
+        </div>
+      )}
+
+      {/* List View */}
+      {viewMode === 'list' && (
+        <div className="mobileProductList">
+          {products.map(product => (
+            <div key={product.id} className="mobileItemCard">
+              <img src={product.img} alt={product.name} className="mobileItemCardImg" />
+              <div className="mobileItemCardBody">
+                <div className="mobileItemCardName">{product.name}</div>
+                <div className="mobileItemCardPrice">
+                  ${product.price}.00
+                  {product.oldPrice && (
+                    <span style={{ marginLeft: '6px', fontSize: '13px', color: '#8B96A5', textDecoration: 'line-through', fontWeight: 400 }}>
+                      ${product.oldPrice}.00
+                    </span>
+                  )}
+                </div>
+                <div className="mobileItemCardRating">
+                  <div className="mobileItemCardStars">
+                    {[1, 2, 3, 4, 5].map(i => (
+                      <span key={i} style={{ color: i <= product.rating ? '#FF9017' : '#D5CDC5' }}>★</span>
+                    ))}
+                  </div>
+                  <span className="mobileItemCardDot" />
+                  <span className="mobileItemCardOrders">{product.orders} orders</span>
+                  <span className="mobileItemCardDot" />
+                  <span className="mobileItemCardShipping">{product.shipping}</span>
+                </div>
+                <div className="mobileItemCardActions">
+                  <Link to={`/product/${product.id}`} className="mobileItemCardBtnSave">View details</Link>
+                  <button className="mobileItemCardBtnRemove">♡ Save</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Grid View */}
+      {viewMode === 'grid' && (
+        <div className="mobileProductGrid">
+          {products.map(product => (
+            <div key={product.id} className="mobileGridCard">
+              <div className="mobileGridCardImgWrap">
+                <img src={product.img} alt={product.name} className="mobileGridCardImg" />
+              </div>
+              <div className="mobileGridCardBody">
+                <div className="mobileGridCardPrice">
+                  ${product.price}.00
+                  {product.oldPrice && (
+                    <span style={{ marginLeft: '6px', fontSize: '12px', color: '#8B96A5', textDecoration: 'line-through', fontWeight: 400 }}>
+                      ${product.oldPrice}.00
+                    </span>
+                  )}
+                </div>
+                <div className="mobileGridCardName">{product.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      <div className="mobilePagination">
+        <span style={{ fontSize: '13px' }}>Show</span>
+        <select className="mobileShowSelect">
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+        </select>
+        <button className="mobilePageBtn">‹</button>
+        <button className="mobilePageBtn mobilePageBtnActive">1</button>
+        <button className="mobilePageBtn">2</button>
+        <button className="mobilePageBtn">3</button>
+        <button className="mobilePageBtn">›</button>
+      </div>
+
+    </div>
+    </>
+    
   )
 }
 
