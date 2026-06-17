@@ -1,107 +1,92 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import styles from './Cart.module.css'
 import './Cart.mobile.css'
-
-const initialCartItems = [
-  { id: 1, name: 'Bags with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Artel Market', price: 78.99, qty: 9, img: '/src/assets/images/bag.png' },
-  { id: 2, name: 'Branded coat for men', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Best factory LLC', price: 39.00, qty: 3, img: '/src/assets/images/coat.png' },
-  { id: 3, name: 'T-shirts with multiple colors, for men and lady', specs: 'Size: medium, Color: blue, Material: Plastic', seller: 'Artel Market', price: 170.50, qty: 1, img: '/src/assets/images/Sleeve T-shirt.jpg' },
-]
-
-const savedItems = [
-  { id: 1, name: 'GoPro HERO6 4K Action Camera - Black', price: 99.50, img: '/src/assets/images/GoPro Cameras.png' },
-  { id: 2, name: 'Hp Core i5 7th gen', price: 99.50, img: '/src/assets/images/laptops.png' },
-  { id: 3, name: 'Kitchen Mixer', price: 99.50, img: '/src/assets/images/kitchen mixer.png' },
-  { id: 4, name: 'Techno Spark Neo7', price: 99.50, img: '/src/assets/images/consumer Mobile.png' },
-]
+import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 
 function Cart() {
-  const [cartItems, setCartItems] = useState(initialCartItems)
+  const { user } = useAuth()
+  const { activeItems, savedItems, cartCount, subtotal, updateQty, removeItem, saveForLater, clearCart, cartLoading } = useCart()
   const [coupon, setCoupon] = useState('')
 
-  const removeItem = (id) => {
-    setCartItems(prev => prev.filter(item => item.id !== id))
-  }
-
-  const updateQty = (id, qty) => {
-    setCartItems(prev => prev.map(item => item.id === id ? { ...item, qty: Number(qty) } : item))
-  }
-
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)
   const discount = 60.00
   const tax = 14.00
   const total = subtotal - discount + tax
 
-  return (
+  const getImg = (product) => {
+    const main = product?.images?.find(i => i.isMain)
+    return main?.url || product?.images?.[0]?.url || ''
+  }
 
+  // Not logged in
+  if (!user) {
+    return (
+      <div className="text-center py-5">
+        <h5>Please log in to view your cart</h5>
+        <Link to="/login" className="btn btn-primary mt-3">Login</Link>
+      </div>
+    )
+  }
+
+  if (cartLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '60vh' }}>
+        <div className="spinner-border text-primary" role="status" />
+      </div>
+    )
+  }
+
+  return (
     <>
       <div className={styles.pageWrapper}>
         <div className="container py-3">
 
-          {/* Page Title */}
-          <h4 className={styles.pageTitle}>My cart ({cartItems.length})</h4>
+          <h4 className={styles.pageTitle}>My cart ({cartCount})</h4>
 
-          {/* Main Layout */}
           <div className={styles.mainLayout}>
 
-            {/* Left: Cart */}
+            {/* Left: Cart Items */}
             <div className={styles.cartSection}>
 
-              {/* Cart Box */}
               <div className={styles.cartBox}>
-                {cartItems.map((item) => (
-                  <div key={item.id} className={styles.cartItem}>
+                {activeItems.length === 0 && (
+                  <div className="text-center py-5 text-muted">
+                    Your cart is empty. <Link to="/products">Shop now</Link>
+                  </div>
+                )}
 
-                    {/* Image */}
+                {activeItems.map((item) => (
+                  <div key={item._id} className={styles.cartItem}>
                     <div className={styles.cartItemImg}>
-                      <img src={item.img} alt={item.name} />
+                      <img src={getImg(item.product)} alt={item.product?.name} />
                     </div>
-
-                    {/* Info */}
                     <div className={styles.cartItemInfo}>
-                      <div className={styles.cartItemName}>{item.name}</div>
-                      <div className={styles.cartItemSpecs}>{item.specs}</div>
-                      <div className={styles.cartItemSeller}>Seller: {item.seller}</div>
+                      <div className={styles.cartItemName}>{item.product?.name}</div>
+                      <div className={styles.cartItemSeller}>Seller: {item.product?.seller?.company || 'Seller'}</div>
                       <div className={styles.cartItemActions}>
-                        <button
-                          className={styles.removeBtn}
-                          onClick={() => removeItem(item.id)}
-                        >
-                          Remove
-                        </button>
-                        <button className={styles.saveBtn}>Save for later</button>
+                        <button className={styles.removeBtn} onClick={() => removeItem(item._id)}>Remove</button>
+                        <button className={styles.saveBtn} onClick={() => saveForLater(item._id)}>Save for later</button>
                       </div>
                     </div>
-
-                    {/* Qty + Price */}
                     <div className={styles.cartItemRight}>
-                      <div className={styles.cartItemPrice}>${item.price.toFixed(2)}</div>
+                      <div className={styles.cartItemPrice}>${item.product?.price?.toFixed(2)}</div>
                       <select
                         className={styles.qtySelect}
                         value={item.qty}
-                        onChange={e => updateQty(item.id, e.target.value)}
+                        onChange={e => updateQty(item._id, Number(e.target.value))}
                       >
                         {[1,2,3,4,5,6,7,8,9,10].map(n => (
                           <option key={n} value={n}>Qty: {n}</option>
                         ))}
                       </select>
                     </div>
-
                   </div>
                 ))}
 
-                {/* Cart Footer */}
                 <div className={styles.cartFooter}>
-                  <Link to="/products" className={styles.backBtn}>
-                    ← Back to shop
-                  </Link>
-                  <button
-                    className={styles.removeAllBtn}
-                    onClick={() => setCartItems([])}
-                  >
-                    Remove all
-                  </button>
+                  <Link to="/products" className={styles.backBtn}>← Back to shop</Link>
+                  <button className={styles.removeAllBtn} onClick={clearCart}>Remove all</button>
                 </div>
               </div>
 
@@ -123,30 +108,29 @@ function Cart() {
               </div>
 
               {/* Saved for Later */}
-              <div className={styles.savedSection}>
-                <h5 className={styles.savedTitle}>Saved for later</h5>
-                <div className={styles.savedGrid}>
-                  {savedItems.map((item, i) => (
-                    <div key={i} className={styles.savedCard}>
-                      <div className={styles.savedImgWrapper}>
-                        <img src={item.img} alt={item.name} className={styles.savedImg} />
+              {savedItems.length > 0 && (
+                <div className={styles.savedSection}>
+                  <h5 className={styles.savedTitle}>Saved for later ({savedItems.length})</h5>
+                  <div className={styles.savedGrid}>
+                    {savedItems.map((item) => (
+                      <div key={item._id} className={styles.savedCard}>
+                        <div className={styles.savedImgWrapper}>
+                          <img src={getImg(item.product)} alt={item.product?.name} className={styles.savedImg} />
+                        </div>
+                        <div className={styles.savedPrice}>${item.product?.price?.toFixed(2)}</div>
+                        <div className={styles.savedName}>{item.product?.name}</div>
+                        <button className={styles.moveToCartBtn} onClick={() => saveForLater(item._id)}>
+                          🛒 Move to cart
+                        </button>
                       </div>
-                      <div className={styles.savedPrice}>${item.price.toFixed(2)}</div>
-                      <div className={styles.savedName}>{item.name}</div>
-                      <button className={styles.moveToCartBtn}>
-                        🛒 Move to cart
-                      </button>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-
+              )}
             </div>
 
-            {/* Right: Aside */}
+            {/* Right: Summary */}
             <div className={styles.aside}>
-
-              {/* Coupon Block */}
               <div className={styles.couponBlock}>
                 <div className={styles.couponTitle}>Have a coupon?</div>
                 <div className={styles.couponRow}>
@@ -161,7 +145,6 @@ function Cart() {
                 </div>
               </div>
 
-              {/* Summary Block */}
               <div className={styles.summaryBlock}>
                 <div className={styles.summaryRow}>
                   <span className={styles.summaryLabel}>Subtotal:</span>
@@ -186,14 +169,11 @@ function Cart() {
                   <span title="Mastercard">💳</span>
                   <span title="PayPal">💳</span>
                   <span title="Visa">💳</span>
-                  <span title="Apple Pay">💳</span>
                 </div>
               </div>
-
             </div>
           </div>
 
-          {/* Discount Banner */}
           <div className={styles.discountBanner}>
             <div className={styles.bannerLeft}>
               <div className={styles.bannerTitle}>Super discount on more than 100 USD</div>
@@ -201,62 +181,43 @@ function Cart() {
             </div>
             <button className={styles.bannerBtn}>Shop now</button>
           </div>
-
         </div>
       </div>
 
       {/* ========== MOBILE LAYOUT ========== */}
       <div className="mobileCart">
-
-        {/* Header */}
         <div className="mobileHeader">
           <button className="mobileHeaderIcon" onClick={() => window.history.back()}>←</button>
-          <div className="mobileHeaderTitle">My cart ({cartItems.length})</div>
+          <div className="mobileHeaderTitle">My cart ({cartCount})</div>
         </div>
 
-        {/* Cart Items */}
-        {cartItems.map(item => (
-          <div key={item.id} className="mobileCartItem">
-            <button className="mobileCartItemMore">⋮</button>
+        {activeItems.map(item => (
+          <div key={item._id} className="mobileCartItem">
+            <button className="mobileCartItemMore" onClick={() => removeItem(item._id)}>✕</button>
             <div className="mobileCartItemTop">
               <div className="mobileCartItemImg">
-                <img src={item.img} alt={item.name} />
+                <img src={getImg(item.product)} alt={item.product?.name} />
               </div>
               <div className="mobileCartItemInfo">
-                <div className="mobileCartItemName">{item.name}</div>
-                <div className="mobileCartItemSpecs">{item.specs}</div>
+                <div className="mobileCartItemName">{item.product?.name}</div>
+                <div className="mobileCartItemSpecs">${item.product?.price?.toFixed(2)} each</div>
               </div>
             </div>
             <div className="mobileCartItemBottom">
               <div className="mobileQtyStepper">
-                <button
-                  className="mobileQtyBtn"
-                  onClick={() => updateQty(item.id, Math.max(1, item.qty - 1))}
-                >
-                  −
-                </button>
+                <button className="mobileQtyBtn" onClick={() => updateQty(item._id, Math.max(1, item.qty - 1))}>−</button>
                 <span className="mobileQtyValue">{item.qty}</span>
-                <button
-                  className="mobileQtyBtn"
-                  onClick={() => updateQty(item.id, item.qty + 1)}
-                >
-                  +
-                </button>
+                <button className="mobileQtyBtn" onClick={() => updateQty(item._id, item.qty + 1)}>+</button>
               </div>
-              <div className="mobileCartItemPrice">${item.price.toFixed(2)}</div>
+              <div className="mobileCartItemPrice">${(item.product?.price * item.qty).toFixed(2)}</div>
             </div>
           </div>
         ))}
 
-        {/* Order Summary */}
         <div className="mobileSummary">
           <div className="mobileSummaryRow">
-            <span className="mobileSummaryLabel">Items ({cartItems.length}):</span>
+            <span className="mobileSummaryLabel">Items ({cartCount}):</span>
             <span className="mobileSummaryValue">${subtotal.toFixed(2)}</span>
-          </div>
-          <div className="mobileSummaryRow">
-            <span className="mobileSummaryLabel">Shipping:</span>
-            <span className="mobileSummaryValue">$10.00</span>
           </div>
           <div className="mobileSummaryRow">
             <span className="mobileSummaryLabel">Tax:</span>
@@ -267,26 +228,6 @@ function Cart() {
             <span>${total.toFixed(2)}</span>
           </div>
           <button className="mobileCheckoutBtn">Proceed to checkout</button>
-        </div>
-
-        {/* Deals and offers (saved items) */}
-        <div className="mobileDealsSection">
-          <h5 className="mobileDealsTitle">Deals and offers</h5>
-          {savedItems.map(item => (
-            <div key={item.id} className="mobileItemList">
-              <div className="mobileItemListImg">
-                <img src={item.img} alt={item.name} />
-              </div>
-              <div className="mobileItemListBody">
-                <div className="mobileItemListPrice">${item.price.toFixed(2)}</div>
-                <div className="mobileItemListName">{item.name}</div>
-                <div className="mobileItemListActions">
-                  <button className="mobileItemListBtnSave">🛒 Move</button>
-                  <button className="mobileItemListBtnRemove">Remove</button>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </>
