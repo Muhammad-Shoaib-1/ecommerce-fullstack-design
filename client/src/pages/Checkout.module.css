@@ -1,0 +1,115 @@
+.pageWrapper {
+  background: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* Breadcrumb */
+.breadcrumb { padding: 12px 0 0; font-size: 13px; color: #8B96A5; }
+.breadcrumbLink { color: #8B96A5; text-decoration: none; }
+.breadcrumbLink:hover { color: #0d6efd; }
+.breadcrumbSep { margin: 0 6px; }
+.breadcrumbActive { color: #1C1C1C; }
+
+.pageTitle { font-weight: 700; font-size: 22px; margin: 16px 0 24px; }
+
+/* Stepper */
+.stepper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 0;
+}
+.stepperItem {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+.stepCircle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid #DEE2E7;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: #8B96A5;
+  background: #fff;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.stepCircleActive { border-color: #0d6efd; color: #0d6efd; }
+.stepCircleDone   { background: #0d6efd; border-color: #0d6efd; color: #fff; }
+.stepLabel { font-size: 13px; color: #8B96A5; white-space: nowrap; }
+.stepLabelActive { color: #1C1C1C; font-weight: 600; }
+.stepLine { flex: 1; height: 2px; background: #DEE2E7; margin: 0 8px; }
+.stepLineDone { background: #0d6efd; }
+
+/* Layout */
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .mainLayout { grid-template-columns: 1fr; }
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #DEE2E7;
+}
+.cardTitle { font-weight: 700; font-size: 16px; margin-bottom: 20px; color: #1C1C1C; }
+.label { font-size: 13px; font-weight: 500; margin-bottom: 4px; display: block; color: #505050; }
+
+/* Payment Options */
+.paymentOptions { display: flex; flex-direction: column; gap: 12px; }
+.paymentOption {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  border: 2px solid #DEE2E7;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.paymentOption:hover { border-color: #0d6efd; }
+.paymentOptionActive { border-color: #0d6efd; background: #f0f5ff; }
+.radioInput { display: none; }
+.paymentIcon { font-size: 24px; }
+.paymentLabel { font-weight: 600; font-size: 14px; }
+.paymentDesc  { font-size: 12px; color: #8B96A5; }
+.cardInputs { background: #F5F5F5; padding: 16px; border-radius: 8px; }
+
+/* Review */
+.reviewSection { border: 1px solid #DEE2E7; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+.reviewSectionHeader { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+.editBtn { font-size: 12px; color: #0d6efd; background: none; border: none; cursor: pointer; padding: 0; }
+.reviewContent { font-size: 13px; color: #505050; line-height: 1.6; }
+.reviewItems { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.reviewItem { display: flex; align-items: center; gap: 12px; }
+.reviewItemImg { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; border: 1px solid #DEE2E7; }
+.reviewItemInfo { flex: 1; }
+.reviewItemName { font-size: 13px; font-weight: 500; }
+.reviewItemMeta { font-size: 12px; color: #8B96A5; }
+.reviewItemPrice { font-weight: 600; font-size: 14px; color: #1C1C1C; }
+
+/* Summary Aside */
+.summaryCard {
+  background: #fff;
+  border: 1px solid #DEE2E7;
+  border-radius: 8px;
+  padding: 20px;
+  position: sticky;
+  top: 80px;
+}
+.summaryTitle { font-weight: 700; font-size: 15px; margin-bottom: 16px; }
+.summaryItems { display: flex; flex-direction: column; gap: 10px; max-height: 220px; overflow-y: auto; }
+.summaryItem { display: flex; align-items: center; gap: 10px; }
+.summaryItemImg { width: 40px; height: 40px; object-fit: contain; border-radius: 4px; border: 1px solid #eee; }
+.summaryItemName { flex: 1; font-size: 12px; color: #505050; }
+.summaryItemPrice { font-size: 13px; font-weight: 600; white-space: nowrap; }
+.summaryDivider { border-top: 1px solid #DEE2E7; margin: 12px 0; }
+.summaryRow { display: flex; justify-content: space-between; font-size: 13px; color: #505050; margin-bottom: 8px; }
+.summaryTotal { display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; color: #1C1C1C; }
+.shippingNote { background: #fff8e6; border: 1px solid #FFD166; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #805300; margin-top: 12px; }

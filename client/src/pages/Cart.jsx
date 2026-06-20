@@ -7,12 +7,34 @@ import { useAuth } from '../context/AuthContext'
 
 function Cart() {
   const { user } = useAuth()
-  const { activeItems, savedItems, cartCount, subtotal, updateQty, removeItem, saveForLater, clearCart, cartLoading } = useCart()
-  const [coupon, setCoupon] = useState('')
+  const {
+    activeItems, savedItems, cartCount, subtotal, updateQty, removeItem, saveForLater, clearCart, cartLoading,
+    appliedCoupon, couponDiscount, applyCoupon, removeCoupon,
+  } = useCart()
+  const [coupon, setCoupon]           = useState('')
+  const [couponError, setCouponError] = useState('')
+  const [applying, setApplying]       = useState(false)
 
-  const discount = 60.00
-  const tax = 14.00
-  const total = subtotal - discount + tax
+  const handleApplyCoupon = async () => {
+    setCouponError('')
+    setApplying(true)
+    const result = await applyCoupon(coupon)
+    if (!result.success) setCouponError(result.message)
+    else setCoupon('')
+    setApplying(false)
+  }
+
+  const handleRemoveCoupon = () => {
+    removeCoupon()
+    setCoupon('')
+    setCouponError('')
+  }
+
+  // All values are 0 when cart is empty — no fake numbers
+  const discount = subtotal === 0 ? 0 : couponDiscount
+  const taxableAmount = Math.max(subtotal - discount, 0)
+  const tax   = subtotal === 0 ? 0 : parseFloat((taxableAmount * 0.08).toFixed(2))   // 8% tax, matches Checkout
+  const total = subtotal === 0 ? 0 : parseFloat((taxableAmount + tax).toFixed(2))
 
   const getImg = (product) => {
     const main = product?.images?.find(i => i.isMain)
@@ -133,16 +155,28 @@ function Cart() {
             <div className={styles.aside}>
               <div className={styles.couponBlock}>
                 <div className={styles.couponTitle}>Have a coupon?</div>
-                <div className={styles.couponRow}>
-                  <input
-                    type="text"
-                    className={styles.couponInput}
-                    placeholder="Add coupon"
-                    value={coupon}
-                    onChange={e => setCoupon(e.target.value)}
-                  />
-                  <button className={styles.couponApplyBtn}>Apply</button>
-                </div>
+
+                {appliedCoupon ? (
+                  <div className={styles.couponApplied}>
+                    <span>✓ <strong>{appliedCoupon.code}</strong> applied{appliedCoupon.description ? ` — ${appliedCoupon.description}` : ''}</span>
+                    <button className={styles.couponRemoveBtn} onClick={handleRemoveCoupon}>Remove</button>
+                  </div>
+                ) : (
+                  <div className={styles.couponRow}>
+                    <input
+                      type="text"
+                      className={styles.couponInput}
+                      placeholder="Add coupon"
+                      value={coupon}
+                      onChange={e => setCoupon(e.target.value)}
+                      onKeyDown={e => e.key === 'Enter' && handleApplyCoupon()}
+                    />
+                    <button className={styles.couponApplyBtn} onClick={handleApplyCoupon} disabled={applying}>
+                      {applying ? '...' : 'Apply'}
+                    </button>
+                  </div>
+                )}
+                {couponError && <div className={styles.couponError}>{couponError}</div>}
               </div>
 
               <div className={styles.summaryBlock}>
@@ -152,18 +186,30 @@ function Cart() {
                 </div>
                 <div className={styles.summaryRow}>
                   <span className={styles.summaryLabel}>Discount:</span>
-                  <span className={`${styles.summaryValue} ${styles.discount}`}>- $60.00</span>
+                  <span className={`${styles.summaryValue} ${discount > 0 ? styles.discount : ''}`}>
+                    {discount > 0 ? `- $${discount.toFixed(2)}` : '$0.00'}
+                  </span>
                 </div>
                 <div className={styles.summaryRow}>
-                  <span className={styles.summaryLabel}>Tax:</span>
-                  <span className={`${styles.summaryValue} ${styles.tax}`}>+ $14.00</span>
+                  <span className={styles.summaryLabel}>Tax (8%):</span>
+                  <span className={`${styles.summaryValue} ${tax > 0 ? styles.tax : ''}`}>
+                    {tax > 0 ? `+ $${tax.toFixed(2)}` : '$0.00'}
+                  </span>
                 </div>
                 <div className={styles.summaryDivider} />
                 <div className={styles.summaryTotalRow}>
                   <span className={styles.summaryTotalLabel}>Total:</span>
                   <span className={styles.summaryTotalValue}>${total.toFixed(2)}</span>
                 </div>
-                <button className={styles.checkoutBtn}>Checkout</button>
+                {cartCount === 0 ? (
+                  <button className={styles.checkoutBtn} disabled style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+                    Checkout
+                  </button>
+                ) : (
+                  <Link to="/checkout" className={styles.checkoutBtn} style={{ textDecoration: 'none', textAlign: 'center' }}>
+                    Checkout
+                  </Link>
+                )}
                 <div className={styles.paymentIcons}>
                   <span title="Amex">💳</span>
                   <span title="Mastercard">💳</span>
@@ -219,6 +265,12 @@ function Cart() {
             <span className="mobileSummaryLabel">Items ({cartCount}):</span>
             <span className="mobileSummaryValue">${subtotal.toFixed(2)}</span>
           </div>
+          {discount > 0 && (
+            <div className="mobileSummaryRow">
+              <span className="mobileSummaryLabel">Discount:</span>
+              <span className="mobileSummaryValue">- ${discount.toFixed(2)}</span>
+            </div>
+          )}
           <div className="mobileSummaryRow">
             <span className="mobileSummaryLabel">Tax:</span>
             <span className="mobileSummaryValue">${tax.toFixed(2)}</span>
@@ -227,7 +279,13 @@ function Cart() {
             <span>Total:</span>
             <span>${total.toFixed(2)}</span>
           </div>
-          <button className="mobileCheckoutBtn">Proceed to checkout</button>
+          {cartCount === 0 ? (
+            <button className="mobileCheckoutBtn" disabled style={{ opacity: 0.5 }}>Proceed to checkout</button>
+          ) : (
+            <Link to="/checkout" className="mobileCheckoutBtn" style={{ textDecoration: 'none', textAlign: 'center', display: 'block' }}>
+              Proceed to checkout
+            </Link>
+          )}
         </div>
       </div>
     </>

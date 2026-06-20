@@ -1,0 +1,35 @@
+.pageWrapper { background: #F5F5F5; min-height: 100vh; }
+.pageHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+.pageTitle { font-weight: 700; font-size: 22px; margin: 0; }
+.pageSubtitle { font-size: 13px; color: #8B96A5; margin: 4px 0 0; }
+
+.emptyState { text-align: center; padding: 60px 20px; background: #fff; border-radius: 8px; border: 1px solid #DEE2E7; }
+.emptyIcon { font-size: 56px; margin-bottom: 16px; }
+
+.ordersList { display: flex; flex-direction: column; gap: 16px; }
+
+.orderCard { background: #fff; border: 1px solid #DEE2E7; border-radius: 8px; padding: 16px 20px; }
+
+.orderCardHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.orderMeta { display: flex; flex-direction: column; gap: 2px; }
+.orderId { font-weight: 700; font-size: 15px; color: #1C1C1C; font-family: monospace; }
+.orderDate { font-size: 12px; color: #8B96A5; }
+
+.orderItems { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; border-top: 1px solid #F5F5F5; border-bottom: 1px solid #F5F5F5; padding: 12px 0; }
+.orderItemThumb { width: 52px; height: 52px; border: 1px solid #DEE2E7; border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.orderItemThumb img { width: 100%; height: 100%; object-fit: contain; }
+.orderItemMore { width: 52px; height: 52px; border: 1px solid #DEE2E7; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #8B96A5; background: #F5F5F5; flex-shrink: 0; }
+.orderItemsInfo { flex: 1; margin-left: 4px; }
+.orderItemsNames { font-size: 13px; color: #1C1C1C; font-weight: 500; }
+.orderItemsCount { font-size: 12px; color: #8B96A5; margin-top: 2px; }
+
+.orderCardFooter { display: flex; align-items: center; gap: 16px; }
+.orderTotal { display: flex; flex-direction: column; }
+.orderTotalLabel { font-size: 11px; color: #8B96A5; text-transform: uppercase; }
+.orderTotalValue { font-weight: 700; font-size: 16px; color: #1C1C1C; }
+.orderPayment { font-size: 12px; color: #8B96A5; flex: 1; }
+
+.pagination { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 24px; }
+.pageBtn { padding: 6px 16px; border: 1px solid #DEE2E7; background: #fff; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.pageBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.pageInfo { font-size: 13px; color: #8B96A5; }

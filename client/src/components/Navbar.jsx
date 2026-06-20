@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import { FaUser, FaComment, FaClipboardList, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import { FaUser, FaComment, FaClipboardList, FaShoppingCart, FaSignOutAlt, FaShieldAlt } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
+import api from '../api/axios'
 
 function Navbar() {
   const { user, logout } = useAuth()
   const { cartCount } = useCart()
   const navigate = useNavigate()
-  const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('')
+  const [search, setSearch]         = useState('')
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    api.get('/categories').then(({ data }) => setCategories(data.categories)).catch(() => {})
+  }, [])
 
   const handleSearch = (e) => {
     e.preventDefault()
-    const params = new URLSearchParams()
-    if (search) params.set('search', search)
-    if (category) params.set('category', category)
-    navigate(`/products?${params}`)
+    if (!search.trim()) return
+    navigate(`/products?search=${encodeURIComponent(search.trim())}`)
   }
 
-  const handleLogout = () => {
-    logout()
-    navigate('/')
-  }
+  const handleLogout = () => { logout(); navigate('/') }
 
   return (
     <nav className="border-bottom py-3 bg-white">
       <div className="container d-flex align-items-center justify-content-between gap-3">
 
         {/* Logo */}
-        <Link to="/" className="text-decoration-none d-flex align-items-center gap-2">
+        <Link to="/" className="text-decoration-none d-flex align-items-center gap-2" style={{ minWidth: '120px' }}>
           <div className="bg-primary rounded p-2">
             <FaShoppingCart color="white" size={20} />
           </div>
@@ -45,32 +45,46 @@ function Navbar() {
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
-          <select
-            className="form-select rounded-0 border-start-0 border-primary"
-            style={{ width: '150px' }}
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-          >
-            <option value="">All category</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothes-and-wear">Clothing</option>
-          </select>
+          <div className="dropdown">
+            <button
+              type="button"
+              className="btn btn-outline-primary rounded-0 border-start-0 dropdown-toggle"
+              style={{ whiteSpace: 'nowrap', minWidth: '140px' }}
+              data-bs-toggle="dropdown"
+            >
+              All category
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button className="dropdown-item" type="button"
+                  onClick={() => navigate('/products')}>
+                  All Products
+                </button>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              {categories.map(cat => (
+                <li key={cat._id}>
+                  <button className="dropdown-item" type="button"
+                    onClick={() => navigate(`/products?category=${cat._id}`)}>
+                    {cat.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
           <button type="submit" className="btn btn-primary rounded-0 rounded-end px-4">
             Search
           </button>
         </form>
 
-        {/* Icons */}
+        {/* Right Icons */}
         <div className="d-flex gap-4 align-items-center">
 
-          {/* Profile / Auth */}
+          {/* Profile */}
           {user ? (
             <div className="dropdown">
-              <div
-                className="d-flex flex-column align-items-center text-secondary"
-                style={{ cursor: 'pointer' }}
-                data-bs-toggle="dropdown"
-              >
+              <div className="d-flex flex-column align-items-center text-secondary"
+                style={{ cursor: 'pointer' }} data-bs-toggle="dropdown">
                 <FaUser size={22} />
                 <small style={{ fontSize: '11px' }}>{user.name.split(' ')[0]}</small>
               </div>
@@ -78,7 +92,17 @@ function Navbar() {
                 <li><span className="dropdown-item-text text-muted" style={{ fontSize: '12px' }}>{user.email}</span></li>
                 <li><hr className="dropdown-divider" /></li>
                 <li><Link className="dropdown-item" to="#">My Profile</Link></li>
-                <li><Link className="dropdown-item" to="#">Orders</Link></li>
+                <li><Link className="dropdown-item" to="/orders">My Orders</Link></li>
+                {user.role === 'admin' && (
+                  <>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li>
+                      <Link className="dropdown-item text-primary d-flex align-items-center gap-2" to="/admin">
+                        <FaShieldAlt size={13} /> Admin Panel
+                      </Link>
+                    </li>
+                  </>
+                )}
                 <li><hr className="dropdown-divider" /></li>
                 <li>
                   <button className="dropdown-item text-danger d-flex align-items-center gap-2" onClick={handleLogout}>
@@ -101,20 +125,17 @@ function Navbar() {
           </div>
 
           {/* Orders */}
-          <div className="d-flex flex-column align-items-center text-secondary" style={{ cursor: 'pointer' }}>
+          <Link to="/orders" className="d-flex flex-column align-items-center text-secondary text-decoration-none">
             <FaClipboardList size={22} />
             <small style={{ fontSize: '11px' }}>Orders</small>
-          </div>
+          </Link>
 
-          {/* Cart with badge */}
+          {/* Cart */}
           <Link to="/cart" className="d-flex flex-column align-items-center text-secondary text-decoration-none position-relative">
             <div className="position-relative">
               <FaShoppingCart size={22} />
               {cartCount > 0 && (
-                <span
-                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  style={{ fontSize: '10px' }}
-                >
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '10px' }}>
                   {cartCount > 99 ? '99+' : cartCount}
                 </span>
               )}
