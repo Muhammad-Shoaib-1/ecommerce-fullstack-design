@@ -135,7 +135,6 @@ ecommerce-fullstack-design/
     │   ├── Category.js
     │   └── Coupon.js
     ├── routes/                 # Express routers
-    ├── seed.js                 # Sample data seeder
     ├── server.js               # Entry point
     └── package.json
 ```
@@ -247,7 +246,7 @@ http://localhost:5173
 
 **Muhammad Shoaib**
 - GitHub: [@Muhammad-Shoaib-1](https://github.com/Muhammad-Shoaib-1)
-- LinkedIn: [Muhammad Shoaib](https://linkedin.com/in/muhammad-shoaib)
+- LinkedIn: [Muhammad Shoaib](https://www.linkedin.com/in/muhammad-shoaib-3334982aa/)
 ---
 
 ## 📄 License
