@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import styles from './Home.module.css'
 import './Home.mobile.css'
 import api from '../api/axios'
 import { useAuth } from '../context/AuthContext'
+import { Link, useSearchParams } from 'react-router-dom'
 
 function Home() {
   const { user } = useAuth()
+  const [searchParams] = useSearchParams()
   const [time, setTime] = useState({ days: 4, hours: 13, mins: 34, secs: 56 })
 
   // API state
@@ -36,21 +37,35 @@ function Home() {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const [catRes, dealsRes, featuredRes, recommendedRes] = await Promise.all([
+        const [catRes, dealsRes, recommendedRes] = await Promise.all([
           api.get('/categories'),
           api.get('/products?deals=true&limit=5'),
-          api.get('/products?featured=true&limit=8'),
           api.get('/products?limit=10'),
         ])
 
-        setCategories(catRes.data.categories.map(c => c.name))
+        const allCategories = catRes.data.categories
+        setCategories(allCategories.map(c => c.name))
         setDealProducts(dealsRes.data.products)
-
-        const featured = featuredRes.data.products
-        // Split featured into home/outdoor and electronics by category name
-        setHomeOutdoorProducts(featured.slice(0, 8))
-        setElectronicsProducts(featured.slice(0, 8))
         setRecommendedProducts(recommendedRes.data.products)
+
+        const homeOutdoorCat = allCategories.find(c =>
+          c.name.toLowerCase().includes('home') || c.name.toLowerCase().includes('outdoor')
+        )
+        const electronicsCat = allCategories.find(c =>
+          c.name.toLowerCase().includes('electronic') || c.name.toLowerCase().includes('gadget')
+        )
+
+        const [homeRes, electronicsRes] = await Promise.all([
+          homeOutdoorCat
+            ? api.get(`/products?category=${homeOutdoorCat._id}&limit=8`)
+            : api.get('/products?featured=true&limit=8'),
+          electronicsCat
+            ? api.get(`/products?category=${electronicsCat._id}&limit=8`)
+            : api.get('/products?featured=true&limit=8'),
+        ])
+
+        setHomeOutdoorProducts(homeRes.data.products)
+        setElectronicsProducts(electronicsRes.data.products)
       } catch (err) {
         console.error('Homepage fetch error:', err)
       } finally {
@@ -194,16 +209,19 @@ function Home() {
           <div className="row g-2">
             <div className="col-md-2">
               <div className={styles.categorySidebar}>
-                {categories.map((cat, i) => (
-                  <Link
-                    to={`/products?category=${encodeURIComponent(cat)}`}
-                    key={i}
-                    className={`${styles.categoryItem} ${i === 0 ? styles.categoryItemActive : ''}`}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    {cat}
-                  </Link>
-                ))}
+                {categories.map((cat, i) => {
+                  const activeCategory = searchParams.get('category') || categories[0]
+                  return (
+                    <Link
+                      to={`/products?category=${encodeURIComponent(cat)}`}
+                      key={i}
+                      className={`${styles.categoryItem} ${cat === activeCategory ? styles.categoryItemActive : ''}`}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      {cat}
+                    </Link>
+                  )
+                })}
               </div>
             </div>
 
@@ -253,80 +271,84 @@ function Home() {
         {/* Deals & Offers */}
         <div className={`container py-3 ${styles.dealsSection}`}>
           <div className={styles.dealsSectionInner}>
-            <div className="row align-items-center mb-3">
-              <div className="col-md-3">
-                <h6 className="fw-bold mb-0">Deals and offers</h6>
-                <small className="text-muted">Hygiene equipments</small>
-                <div className="d-flex gap-2 mt-2">
-                  {[{ val: time.days, label: 'Days' }, { val: time.hours, label: 'Hour' }, { val: time.mins, label: 'Min' }, { val: time.secs, label: 'Sec' }].map(({ val, label }) => (
-                    <div key={label} className={styles.countdownBox}>
-                      <div className={styles.countdownNum}>{String(val).padStart(2, '0')}</div>
-                      <div className={styles.countdownLabel}>{label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="col-md-9">
-                <div className="d-flex">
-                  {dealProducts.map((product) => (
-                    <Link to={`/product/${product._id}`} key={product._id} className={styles.dealCard} style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <img src={getImg(product)} alt={product.name} className={styles.dealCardImg} />
-                      <div className={styles.dealCardName}>{product.name}</div>
-                      <span className="badge rounded-pill text-bg-danger mt-1">{product.discount}</span>
-                    </Link>
-                  ))}
-                </div>
+
+            <div className={styles.dealsLeft}>
+              <h6 className={styles.dealsTitle}>Deals and offers</h6>
+              <small className={styles.dealsSubtitle}>Hygiene equipments</small>
+              <div className={styles.countdownRow}>
+                {[{ val: time.days, label: 'Days' }, { val: time.hours, label: 'Hour' }, { val: time.mins, label: 'Min' }, { val: time.secs, label: 'Sec' }].map(({ val, label }) => (
+                  <div key={label} className={styles.countdownBox}>
+                    <div className={styles.countdownNum}>{String(val).padStart(2, '0')}</div>
+                    <div className={styles.countdownLabel}>{label}</div>
+                  </div>
+                ))}
               </div>
             </div>
+
+            <div className={styles.dealsRight}>
+              {dealProducts.map((product) => (
+                <Link to={`/product/${product._id}`} key={product._id} className={styles.dealCard} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <img src={getImg(product)} alt={product.name} className={styles.dealCardImg} />
+                  <div className={styles.dealCardName}>{product.name}</div>
+                  <span className={styles.dealBadge}>{product.discount}</span>
+                </Link>
+              ))}
+            </div>
+
           </div>
         </div>
 
         {/* Category Sections */}
         {[
-          { title: 'Home and outdoor', bg: '#FFF0E0', bannerImg: '/src/assets/images/home-outdoor-banner.png', products: homeOutdoorProducts },
+          { title: 'Home and outdoor', bg: '#FFF0E0', bannerImg: '/src/assets/images/home-outdoor-banner.jpg', products: homeOutdoorProducts },
           { title: 'Consumer electronics and gadgets', bg: '#EBF6FF', bannerImg: '/src/assets/images/electronics-banner.png', products: electronicsProducts },
         ].map((section, si) => (
           <div className={`container py-3 ${styles.categorySection}`} key={si}>
             <div className={styles.categorySectionInner}>
-              <div className={styles.categoryBanner} style={{ background: section.bg, backgroundImage: `url(${section.bannerImg})` }}>
-                <div className={styles.categoryBannerOverlay} />
+
+              <div className={styles.categoryBanner} style={{ background: section.bg }}>
+                <img src={section.bannerImg} alt={section.title} className={styles.categoryBannerImg} />
                 <div className={styles.categoryBannerContent}>
-                  <h6 className="fw-bold">{section.title}</h6>
-                  <Link to="/products" className="btn btn-outline-secondary btn-sm rounded-pill mt-2">Source now</Link>
+                  <h6 className={styles.categoryBannerTitle}>{section.title}</h6>
+                  <Link to="/products" className={styles.categoryBannerBtn}>Source now</Link>
                 </div>
               </div>
+
               <div className={styles.categoryProductGrid}>
-                {section.products.map((product) => (
+                {section.products.slice(0, 8).map((product) => (
                   <Link to={`/product/${product._id}`} key={product._id} className={styles.categoryProductCard} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <img src={getImg(product)} alt={product.name} className={styles.categoryProductImg} />
-                    <div className="fw-semibold mt-1" style={{ fontSize: '12px' }}>{product.name}</div>
-                    <div className="text-muted" style={{ fontSize: '11px' }}>From USD {product.price}</div>
+                    <div className={styles.categoryProductName}>{product.name}</div>
+                    <div className={styles.categoryProductPrice}>From USD {product.price}</div>
                   </Link>
                 ))}
               </div>
+
             </div>
           </div>
         ))}
 
         {/* Quote Banner */}
-        <div className={`container py-3 ${styles.quoteBanner}`}>
-          <div className={styles.quoteBannerInner} style={{ backgroundImage: 'url(/src/assets/images/quote-banner.png)' }}>
-            <div style={{ maxWidth: '400px' }}>
-              <h4 className="fw-bold text-white">An easy way to send requests to all suppliers</h4>
-              <p className="text-white" style={{ fontSize: '14px' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <div className={`container py-3`}>
+          <div className={styles.quoteBanner}>
+            <div className={styles.quoteBannerLeft}>
+              <h4 className={styles.quoteBannerTitle}>An easy way to send requests to all suppliers</h4>
+              <p className={styles.quoteBannerSubtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
             </div>
             <div className={styles.quoteForm}>
-              <h6 className="fw-bold mb-3">Send quote to suppliers</h6>
-              <div className="mb-3">
-                <label className="form-label" style={{ fontSize: '13px' }}>What item you need?</label>
+              <h6 className={styles.quoteFormTitle}>Send quote to suppliers</h6>
+              <div className={styles.quoteFormGroup}>
+                <label className={styles.quoteFormLabel}>What item you need?</label>
                 <input type="text" className="form-control form-control-sm" placeholder="Type more details" />
               </div>
-              <div className="mb-3">
-                <label className="form-label" style={{ fontSize: '13px' }}>Quantity</label>
+              <div className={styles.quoteFormGroup}>
+                <label className={styles.quoteFormLabel}>Quantity</label>
                 <div className="d-flex gap-2">
                   <input type="number" className="form-control form-control-sm" placeholder="0" />
-                  <select className="form-select form-select-sm" style={{ width: '80px' }}>
-                    <option>Pcs</option><option>Kg</option><option>Box</option>
+                  <select className="form-select form-select-sm" style={{ width: '90px' }}>
+                    <option>Pcs</option>
+                    <option>Kg</option>
+                    <option>Box</option>
                   </select>
                 </div>
               </div>
@@ -396,7 +418,6 @@ function Home() {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   )

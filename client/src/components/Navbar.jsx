@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FaUser, FaComment, FaClipboardList, FaShoppingCart, FaSignOutAlt, FaShieldAlt } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Links, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
 import api from '../api/axios'
@@ -119,10 +119,10 @@ function Navbar() {
           )}
 
           {/* Message */}
-          <div className="d-flex flex-column align-items-center text-secondary" style={{ cursor: 'pointer' }}>
+          <Link to="/contact" className="d-flex flex-column align-items-center text-secondary text-decoration-none"> 
             <FaComment size={22} />
             <small style={{ fontSize: '11px' }}>Message</small>
-          </div>
+          </Link>
 
           {/* Orders */}
           <Link to="/orders" className="d-flex flex-column align-items-center text-secondary text-decoration-none">

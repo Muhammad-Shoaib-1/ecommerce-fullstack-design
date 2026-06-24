@@ -18,14 +18,24 @@
   border-radius: 6px;
   padding: 8px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .categoryItem {
-  padding: 8px;
+  display: block;
+  padding: 9px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   color: #1C1C1C;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.categoryItem:hover {
+  background: #f0f4ff;
+  color: #0D6EFD;
 }
 
 .categoryItemActive {
@@ -80,18 +90,54 @@
 
 .dealsSectionInner {
   background: #fff;
-  border: 1px solid #dee2e6;
+  border: 1px solid #DEE2E7;
   border-radius: 6px;
   padding: 16px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 240px;
+}
+
+/* LEFT */
+.dealsLeft {
+  width: 220px;
+  flex-shrink: 0;
+  padding-right: 16px;
+}
+
+.dealsTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1C1C1C;
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
+}
+
+.dealsSubtitle {
+  font-size: 16px;
+  color: #8B96A5;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.countdownRow {
+  display: flex;
+  gap: 6px;
 }
 
 .countdownBox {
-  min-width: 45px;
+  width: 45px;
+  height: 50px;
   text-align: center;
   background: #606060;
   color: #fff;
   border-radius: 4px;
-  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 }
 
 .countdownNum {
@@ -102,6 +148,20 @@
 
 .countdownLabel {
   font-size: 11px;
+  line-height: 1;
+}
+
+/* RIGHT */
+.dealsRight {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  height: 235px;
+}
+
+.dealsRight::-webkit-scrollbar {
+  display: none;
 }
 
 .dealCard {
@@ -118,16 +178,31 @@
 }
 
 .dealCardImg {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
 }
 
 .dealCardName {
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
   margin-top: 8px;
   color: #1C1C1C;
+  letter-spacing: -0.2px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dealBadge {
+  margin-top: 8px;
+  background: #FFE3E3;
+  color: #EB001B;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px 13px 4px;
+  border-radius: 29px;
+  letter-spacing: -0.2px;
 }
 
 /* ===== CATEGORY SECTIONS ===== */
@@ -136,30 +211,33 @@
 }
 
 .categorySectionInner {
+  background: #fff;
   border: 1px solid #E0E0E0;
   border-radius: 6px;
-  background: #fff;
-  overflow: hidden;
-  display: flex;
   height: 257px;
+  display: flex;
+  overflow: hidden;
 }
 
+/* LEFT BANNER */
 .categoryBanner {
   width: 280px;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 16px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  justify-content: flex-start;
+  padding: 20px;
 }
 
-.categoryBannerOverlay {
+.categoryBannerImg {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.5);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
 }
 
 .categoryBannerContent {
@@ -167,54 +245,157 @@
   z-index: 1;
 }
 
+.categoryBannerTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1C1C1C;
+  letter-spacing: -0.2px;
+  line-height: 26px;
+  margin-bottom: 12px;
+}
+
+.categoryBannerBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  height: 32px;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1C1C1C;
+  text-decoration: none;
+  box-shadow: 0px 1px 2px rgba(56, 56, 56, 0.08);
+}
+
+.categoryBannerBtn:hover {
+  background: #f5f5f5;
+  color: #1C1C1C;
+}
+
+/* RIGHT GRID */
 .categoryProductGrid {
-  flex-grow: 1;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .categoryProductCard {
-  width: 225px;
-  height: 128px;
-  border-left: 1px solid #E0E0E0;
-  border-bottom: 1px solid #E0E0E0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 8px;
-  text-align: center;
+  padding: 12px 16px;
+  border-left: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  background: #fff;
+  transition: background 0.15s ease;
+  min-width: 0;
+}
+
+.categoryProductCard:hover {
+  background: #fafafa;
+}
+
+/* Remove bottom border from last row */
+.categoryProductCard:nth-child(5),
+.categoryProductCard:nth-child(6),
+.categoryProductCard:nth-child(7),
+.categoryProductCard:nth-child(8) {
+  border-bottom: none;
 }
 
 .categoryProductImg {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
+}
+
+.categoryProductName {
+  font-size: 16px;
+  color: #1C1C1C;
+  /* margin-top: 6px; */
+  line-height: 19px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.categoryProductPrice {
+  font-size: 13px;
+  color: #8B96A5;
+  margin-top: 2px;
+  line-height: 16px;
 }
 
 /* ===== QUOTE BANNER ===== */
 .quoteBanner {
-  padding: 12px 0;
+  display: flex;
+  align-items: stretch;
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 200px;
 }
 
-.quoteBannerInner {
-  border-radius: 6px;
-  height: 420px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px;
-  border: 1px solid #dee2e6;
+.quoteBannerLeft {
+  flex: 1;
+  background: linear-gradient(90deg, #1B4CF0 0%, #3D8EF0 100%);
+  background-image: url('/src/assets/images/quote-banner.png');
   background-size: cover;
   background-position: center;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quoteBannerTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  max-width: 340px;
+}
+
+.quoteBannerSubtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 320px;
+  margin: 0;
+  line-height: 1.6;
 }
 
 .quoteForm {
+  width: 340px;
+  flex-shrink: 0;
   background: #fff;
-  border-radius: 6px;
   padding: 24px;
-  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quoteFormTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1C1C1C;
+  margin: 0;
+}
+
+.quoteFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.quoteFormLabel {
+  font-size: 13px;
+  color: #606060;
+  font-weight: 500;
 }
 
 /* ===== RECOMMENDED ===== */
@@ -225,8 +406,6 @@
 .recommendedGrid {
   display: flex;
   flex-wrap: wrap;
-  height: 640px;
-  overflow: hidden;
 }
 
 .recommendedCard {

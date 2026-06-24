@@ -178,28 +178,46 @@ function ProductListing() {
                 <div className={styles.productList}>
                   {products.map(product => (
                     <div key={product._id} className={styles.listCard}>
+                    {/* Left: Image */}
+                    <Link to={`/product/${product._id}`}>
                       <img src={getImg(product)} alt={product.name} className={styles.listCardImg} />
-                      <div className={styles.listCardBody}>
-                        <div className={styles.listCardTitle}>{product.name}</div>
-                        <div>
-                          <span className={styles.listCardPrice}>${product.price.toFixed(2)}</span>
-                          {product.oldPrice && <span className={styles.listCardOldPrice}>${product.oldPrice.toFixed(2)}</span>}
-                        </div>
-                        <div className={styles.listCardMeta}>
-                          <StarRating count={product.rating} />
-                          <span>{product.orders} orders &nbsp;•&nbsp;</span>
-                          <span className={styles.freeShipping}>{product.shipping}</span>
-                        </div>
-                        <div className={styles.listCardDesc}>{product.description || 'No description available.'}</div>
-                        <div className="d-flex gap-2 mt-2">
-                          <Link to={`/product/${product._id}`} className={styles.viewDetails}>View details</Link>
-                          <button className="btn btn-primary btn-sm" disabled={addingId === product._id} onClick={() => handleAddToCart(product._id)}>
-                            {addingId === product._id ? '...' : '+ Cart'}
-                          </button>
-                        </div>
+                    </Link>
+
+                    {/* Middle: Info */}
+                    <div className={styles.listCardBody}>
+                      <Link to={`/product/${product._id}`} className={styles.listCardTitle} style={{ textDecoration: 'none' }}>
+                        {product.name}
+                      </Link>
+                      <div className={styles.listCardMeta}>
+                        <StarRating count={product.rating} />
+                        <span className={styles.listCardMetaText}>{product.rating.toFixed(1)}</span>
+                        <span className={styles.listCardMetaDot}>•</span>
+                        <span className={styles.listCardMetaText}>{product.orders} orders</span>
+                        <span className={styles.listCardMetaDot}>•</span>
+                        <span className={styles.freeShipping}>{product.shipping}</span>
                       </div>
-                      <button className={styles.wishlistBtn}>♡</button>
+                      <p className={styles.listCardDesc}>{product.description || 'No description available.'}</p>
+                      <Link to={`/product/${product._id}`} className={styles.viewDetails}>View details</Link>
                     </div>
+
+                    {/* Right: Price + Actions */}
+                    <div className={styles.listCardRight}>
+                      <div>
+                        <div className={styles.listCardPrice}>${product.price.toFixed(2)}</div>
+                        {product.oldPrice && (
+                          <div className={styles.listCardOldPrice}>${product.oldPrice.toFixed(2)}</div>
+                        )}
+                      </div>
+                      <button
+                        className={styles.addToCartBtn}
+                        disabled={addingId === product._id}
+                        onClick={() => handleAddToCart(product._id)}
+                      >
+                        {addingId === product._id ? 'Adding...' : '+ Add to cart'}
+                      </button>
+                      <button className={styles.wishlistBtn}>♡ Save for later</button>
+                    </div>
+                  </div>
                   ))}
                 </div>
               )}
@@ -255,6 +273,122 @@ function ProductListing() {
           </div>
         </div>
       </div>
+
+      {/* ========== MOBILE LAYOUT ========== */}
+<div className="mobileProductListing">
+
+  {/* Search */}
+  <div className="mobileSearch">
+    <div className="mobileSearchWrapper">
+      <span className="mobileSearchIcon">🔍</span>
+      <input className="mobileSearchInput" placeholder="Search products..." />
+    </div>
+  </div>
+
+  {/* Category Pills */}
+  <div className="mobileCategoryPills">
+    <button className="mobilePill" onClick={() => setSelectedCategory('')}>All</button>
+    {categories.map(cat => (
+      <button
+        key={cat._id}
+        className="mobilePill"
+        onClick={() => { setSelectedCategory(cat._id); setPage(1) }}
+      >
+        {cat.name}
+      </button>
+    ))}
+  </div>
+
+  {/* Toolbar */}
+  <div className="mobileToolbar">
+    <button className="mobileToolbarBtn">Sort: Newest ▼</button>
+    <button className="mobileToolbarBtn">Filter ▼</button>
+    <div className="mobileViewToggle">
+      <button
+        className={`mobileViewBtn ${viewMode === 'grid' ? 'mobileViewBtnActive' : ''}`}
+        onClick={() => setViewMode('grid')}
+      >⊞</button>
+      <button
+        className={`mobileViewBtn ${viewMode === 'list' ? 'mobileViewBtnActive' : ''}`}
+        onClick={() => setViewMode('list')}
+      >☰</button>
+    </div>
+  </div>
+
+  {loading && <div className="text-center py-5"><div className="spinner-border text-primary" /></div>}
+
+  {/* List View */}
+  {!loading && viewMode === 'list' && (
+    <div className="mobileProductList">
+      {products.map(product => (
+        <Link
+          key={product._id}
+          to={`/product/${product._id}`}
+          className="mobileItemCard"
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <img src={getImg(product)} alt={product.name} className="mobileItemCardImg" />
+          <div className="mobileItemCardBody">
+            <div className="mobileItemCardName">{product.name}</div>
+            <div className="mobileItemCardPrice">${product.price.toFixed(2)}</div>
+            <div className="mobileItemCardRating">
+              <div className="mobileItemCardStars">
+                {[1,2,3,4,5].map(i => (
+                  <span key={i} style={{ color: i <= product.rating ? '#FF9017' : '#D5CDC5', fontSize: '13px' }}>★</span>
+                ))}
+              </div>
+              <span className="mobileItemCardRatingText">{product.rating.toFixed(1)}</span>
+              <div className="mobileItemCardDot" />
+              <span className="mobileItemCardOrders">{product.orders} orders</span>
+              <div className="mobileItemCardDot" />
+              <span className="mobileItemCardShipping">{product.shipping}</span>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
+  )}
+
+  {/* Grid View */}
+  {!loading && viewMode === 'grid' && (
+    <div className="mobileProductGrid">
+      {products.map(product => (
+        <Link
+          key={product._id}
+          to={`/product/${product._id}`}
+          className="mobileGridCard"
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <div className="mobileGridCardImgWrap">
+            <img src={getImg(product)} alt={product.name} className="mobileGridCardImg" />
+          </div>
+          <div className="mobileGridCardBody">
+            <div className="mobileGridCardPrice">${product.price.toFixed(2)}</div>
+            <div className="mobileGridCardName">{product.name}</div>
+          </div>
+        </Link>
+      ))}
+    </div>
+  )}
+
+  {!loading && products.length === 0 && (
+    <div className="text-center py-5 text-muted">No products found.</div>
+  )}
+
+  {/* Pagination */}
+  <div className="mobilePagination">
+    <select className="mobileShowSelect" value={limit} onChange={e => { setLimit(Number(e.target.value)); setPage(1) }}>
+      <option value={10}>10</option>
+      <option value={20}>20</option>
+    </select>
+    <button className="mobilePageBtn" disabled={page === 1} onClick={() => setPage(p => p - 1)}>‹</button>
+    {Array.from({ length: Math.min(pages, 5) }, (_, i) => i + 1).map(p => (
+      <button key={p} className={`mobilePageBtn ${page === p ? 'mobilePageBtnActive' : ''}`} onClick={() => setPage(p)}>{p}</button>
+    ))}
+    <button className="mobilePageBtn" disabled={page === pages} onClick={() => setPage(p => p + 1)}>›</button>
+  </div>
+
+</div>
     </>
   )
 }

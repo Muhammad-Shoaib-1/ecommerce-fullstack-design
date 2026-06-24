@@ -1,105 +1,92 @@
+import styles from './Footer.module.css';
+import { Link } from 'react-router-dom';
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FiChevronUp } from 'react-icons/fi';
+
 function Footer() {
   return (
-    <footer style={{ width: '100%', height: '324px', background: '#1C1C1C' }}>
+    <footer className={styles.footer}>
 
-      {/* Top Section */}
-      <div
-        className="d-flex align-items-start flex-wrap"
-        style={{ padding: '40px 24px 0 24px', gap: '24px' }}
-      >
+      {/* Main Content */}
+      <div className={styles.footerTop}>
 
-        {/* 1st — Brand */}
-        <div style={{ minWidth: '200px', flex: '1' }}>
-          <div className="d-flex align-items-center gap-2 mb-2">
-            <div className="bg-primary rounded p-1">
-              <span className="text-white">🛍️</span>
+        {/* Col 1 — Brand */}
+        <div className={styles.brandCol}>
+          <div className={styles.logo}>
+            <div className={styles.logoIcon}>
+              <span>B</span>
             </div>
-            <span className="fw-bold text-white fs-5">Brand</span>
+            <span className={styles.logoText}>Brand</span>
           </div>
-          <p style={{ fontSize: '13px', color: '#ccc' }}>
+          <p className={styles.brandDesc}>
             Best information about the company goes here but now lorem ipsum is
           </p>
-          <div className="d-flex gap-2 mt-2" style={{ fontSize: '20px' }}>
-            {['🐦', '📘', '💼', '📸', '▶️'].map((icon, i) => (
-              <span key={i} style={{ cursor: 'pointer' }}>{icon}</span>
-            ))}
+          <div className={styles.socialRow}>
+            <a href="#" className={styles.socialIcon}><FaFacebook /></a>
+            <a href="#" className={styles.socialIcon}><FaTwitter /></a>
+            <a href="#" className={styles.socialIcon}><FaLinkedin /></a>
+            <a href="#" className={styles.socialIcon}><FaInstagram /></a>
+            <a href="#" className={styles.socialIcon}><FaYoutube /></a>
           </div>
         </div>
 
-        {/* 2nd — About */}
-        <div style={{ minWidth: '80px', flex: '1' }}>
-          <h6 className="fw-bold text-white mb-3">About</h6>
-          {['About Us', 'Find store', 'Categories', 'Blogs'].map((link, i) => (
-            <div key={i}>
-              <a href="#" className="text-decoration-none" style={{ fontSize: '13px', color: '#ccc' }}>
-                {link}
-              </a>
-            </div>
+        {/* Col 2 — About */}
+        <div className={styles.linkCol}>
+          <h6 className={styles.colTitle}>About</h6>
+          {['About Us', 'Find store', 'Categories', 'Blogs'].map((link) => (
+            <Link key={link} to="#" className={styles.colLink}>{link}</Link>
           ))}
         </div>
 
-        {/* 3rd — Partnership */}
-        <div style={{ minWidth: '80px', flex: '1' }}>
-          <h6 className="fw-bold text-white mb-3">Partnership</h6>
-          {['About Us', 'Find store', 'Categories', 'Blogs'].map((link, i) => (
-            <div key={i}>
-              <a href="#" className="text-decoration-none" style={{ fontSize: '13px', color: '#ccc' }}>
-                {link}
-              </a>
-            </div>
+        {/* Col 3 — Partnership */}
+        <div className={styles.linkCol}>
+          <h6 className={styles.colTitle}>Partnership</h6>
+          {['About Us', 'Find store', 'Categories', 'Blogs'].map((link) => (
+            <Link key={link} to="#" className={styles.colLink}>{link}</Link>
           ))}
         </div>
 
-        {/* 4th — Information */}
-        <div style={{ minWidth: '100px', flex: '1' }}>
-          <h6 className="fw-bold text-white mb-3">Information</h6>
-          {['Help Center', 'Money Refund', 'Shipping', 'Contact us'].map((link, i) => (
-            <div key={i}>
-              <a href="#" className="text-decoration-none" style={{ fontSize: '13px', color: '#ccc' }}>
-                {link}
-              </a>
-            </div>
+        {/* Col 4 — Information */}
+        <div className={styles.linkCol}>
+          <h6 className={styles.colTitle}>Information</h6>
+          {['Help Center', 'Money Refund', 'Shipping', 'Contact us'].map((link) => (
+            <Link key={link} to="#" className={styles.colLink}>{link}</Link>
           ))}
         </div>
 
-        {/* 5th — For users */}
-        <div style={{ minWidth: '80px', flex: '1' }}>
-          <h6 className="fw-bold text-white mb-3">For users</h6>
-          {['Login', 'Register', 'Settings', 'My Orders'].map((link, i) => (
-            <div key={i}>
-              <a href="#" className="text-decoration-none" style={{ fontSize: '13px', color: '#ccc' }}>
-                {link}
-              </a>
-            </div>
+        {/* Col 5 — For users */}
+        <div className={styles.linkCol}>
+          <h6 className={styles.colTitle}>For users</h6>
+          {['Login', 'Register', 'Settings', 'My Orders'].map((link) => (
+            <Link key={link} to="#" className={styles.colLink}>{link}</Link>
           ))}
         </div>
 
-        {/* 6th — Get app */}
-        <div style={{ minWidth: '120px', flex: '1' }}>
-          <h6 className="fw-bold text-white mb-3">Get app</h6>
-          <div className="d-flex flex-column gap-2">
-            <img src="https://placehold.co/124x40" alt="App Store" className="img-fluid rounded" />
-            <img src="https://placehold.co/124x40" alt="Google Play" className="img-fluid rounded" />
-          </div>
+        {/* Col 6 — Get app */}
+        <div className={styles.appCol}>
+          <h6 className={styles.colTitle}>Get app</h6>
+          <a href="#" className={styles.appBtn}>
+            <img src="/src/assets/images/background.png" alt="App Store" className={styles.appBtnImg} />
+          </a>
+          <a href="#" className={styles.appBtn}>
+            <img src="/src/assets/images/background.png" alt="Google Play" className={styles.appBtnImg} />
+          </a>
         </div>
 
       </div>
 
       {/* Bottom Bar */}
-      <div
-        className="d-flex justify-content-between align-items-center"
-        style={{
-          height: '68px',
-          borderTop: '1px solid #444',
-          padding: '0 129px'
-        }}
-      >
-        <small style={{ color: '#ccc' }}>© 2023 Ecommerce.</small>
-        <small style={{ color: '#ccc' }}>🇬🇧 English</small>
+      <div className={styles.footerBottom}>
+        <span className={styles.copyright}>© 2023 Ecommerce.</span>
+        <div className={styles.langSelector}>
+          <img src="/src/assets/images/us-flag.png" alt="US" className={styles.flagIcon} />
+          <span>English</span>
+          <FiChevronUp size={16} />
+        </div>
       </div>
 
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

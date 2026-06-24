@@ -1,0 +1,232 @@
+/* ===== CONTACT PAGE ===== */
+.contactPage {
+  background: #F7F7F7;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageTitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1C1C1C;
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
+}
+
+.pageSubtitle {
+  font-size: 15px;
+  color: #8B96A5;
+  margin: 0;
+}
+
+/* TOP ROW */
+.topRow {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* SHARED CARD */
+.infoCard,
+.formCard {
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.infoCard {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.formCard {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1C1C1C;
+  margin-bottom: 8px;
+}
+
+/* INFO CARD */
+.infoDesc {
+  font-size: 13px;
+  color: #8B96A5;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.infoIconWrap {
+  width: 36px;
+  height: 36px;
+  background: #E5F1FF;
+  color: #0D6EFD;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.infoLabel {
+  font-size: 11px;
+  color: #8B96A5;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 2px;
+}
+
+.infoValue {
+  font-size: 14px;
+  color: #1C1C1C;
+  line-height: 1.4;
+}
+
+/* HOURS BOX */
+.hoursBox {
+  background: #F7F7F7;
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.hoursTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C1C1C;
+  margin-bottom: 10px;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #505050;
+  padding: 3px 0;
+}
+
+.closed {
+  color: #E24B4A;
+}
+
+/* FORM */
+.formRow {
+  display: flex;
+  gap: 12px;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+.formGroup {
+  margin-bottom: 14px;
+}
+
+.formLabel {
+  font-size: 13px;
+  color: #1C1C1C;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 500;
+}
+
+.submitBtn {
+  margin-top: 4px;
+  font-size: 14px;
+  padding: 8px;
+}
+
+/* FAQ */
+.faqSection {
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.faqTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1C1C1C;
+  margin-bottom: 4px;
+}
+
+.faqSubtitle {
+  font-size: 13px;
+  color: #8B96A5;
+  margin-bottom: 20px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqItem {
+  border-top: 1px solid #E0E0E0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+
+.faqItem:last-child {
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.faqQuestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1C1C1C;
+  gap: 12px;
+}
+
+.faqAnswer {
+  font-size: 13px;
+  color: #505050;
+  line-height: 1.6;
+  margin-top: 10px;
+  padding-right: 24px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .topRow {
+    flex-direction: column;
+  }
+
+  .infoCard {
+    width: 100%;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pageTitle {
+    font-size: 18px;
+  }
+}

@@ -20,6 +20,7 @@ import AdminOrders from './pages/admin/AdminOrders'
 import AdminCategories from './pages/admin/AdminCategories'
 import AdminCoupons from './pages/admin/AdminCoupons'
 import AdminUsers from './pages/admin/AdminUsers'
+import Contact from './pages/Contact';
 
 // Wrapper for public pages — includes navbar, newsletter, footer
 function PublicLayout({ children }) {
@@ -54,6 +55,8 @@ function App() {
         <Route path="/orders/:id" element={<PublicLayout><OrderDetail /></PublicLayout>} />
         <Route path="/login" element={<PublicLayout><Login /></PublicLayout>} />
         <Route path="/register" element={<PublicLayout><Register /></PublicLayout>} />
+        <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+
 
         {/* ── Admin routes (own layout, no public navbar) ── */}
         <Route path="/admin" element={<AdminLayout />}>

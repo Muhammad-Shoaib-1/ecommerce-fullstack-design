@@ -4,13 +4,17 @@ const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 
 dotenv.config()
+if (!process.env.JWT_SECRET) {
+  console.error('FATAL: JWT_SECRET is not set in .env')
+  process.exit(1)
+}
 connectDB()
 
 const app = express()
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite dev server
+  origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true,
 }))
 app.use(express.json())
