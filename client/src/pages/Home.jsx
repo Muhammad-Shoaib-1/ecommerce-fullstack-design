@@ -108,7 +108,7 @@ function Home() {
         </div>
 
         <div className="mobileBanner">
-          <img src="/src/assets/images/hero-bg.png" alt="banner" className="mobileBannerImg" />
+          <img src="/images/hero-bg.png" alt="banner" className="mobileBannerImg" />
           <div className="mobileBannerText">
             <div className="mobileBannerSubtitle">Latest trending</div>
             <div className="mobileBannerTitle">Electronic items</div>
@@ -226,7 +226,7 @@ function Home() {
             </div>
 
             <div className="col-md-7">
-              <div className={styles.heroBanner} style={{ backgroundImage: 'url(/src/assets/images/hero-bg.png)' }}>
+              <div className={styles.heroBanner} style={{ backgroundImage: 'url(/images/hero-bg.png)' }}>
                 <div>
                   <p className="mb-1 text-muted">Latest trending</p>
                   <h2 className="fw-bold">Electronic items</h2>
@@ -300,8 +300,8 @@ function Home() {
 
         {/* Category Sections */}
         {[
-          { title: 'Home and outdoor', bg: '#FFF0E0', bannerImg: '/src/assets/images/home-outdoor-banner.jpg', products: homeOutdoorProducts },
-          { title: 'Consumer electronics and gadgets', bg: '#EBF6FF', bannerImg: '/src/assets/images/electronics-banner.png', products: electronicsProducts },
+          { title: 'Home and outdoor', bg: '#FFF0E0', bannerImg: '/images/home-outdoor-banner.jpg', products: homeOutdoorProducts },
+          { title: 'Consumer electronics and gadgets', bg: '#EBF6FF', bannerImg: '/images/electronics-banner.png', products: electronicsProducts },
         ].map((section, si) => (
           <div className={`container py-3 ${styles.categorySection}`} key={si}>
             <div className={styles.categorySectionInner}>
@@ -376,10 +376,10 @@ function Home() {
           <h5 className="fw-bold mb-3">Our extra services</h5>
           <div className="d-flex gap-3">
             {[
-              { title: 'Source from Industry Hubs', icon: '🔍', bg: '/src/assets/images/service1.png' },
-              { title: 'Customize Your Products', icon: '🗂️', bg: '/src/assets/images/service2.png' },
-              { title: 'Fast, reliable shipping by ocean or air', icon: '✈️', bg: '/src/assets/images/service3.png' },
-              { title: 'Product monitoring and inspection', icon: '🌐', bg: '/src/assets/images/service4.png' },
+              { title: 'Source from Industry Hubs', icon: '🔍', bg: '/images/service1.png' },
+              { title: 'Customize Your Products', icon: '🗂️', bg: '/images/service2.png' },
+              { title: 'Fast, reliable shipping by ocean or air', icon: '✈️', bg: '/images/service3.png' },
+              { title: 'Product monitoring and inspection', icon: '🌐', bg: '/images/service4.png' },
             ].map((service, i) => (
               <div key={i} className={styles.serviceCard} style={{ backgroundImage: `url(${service.bg})` }}>
                 <div className={styles.serviceOverlay}>

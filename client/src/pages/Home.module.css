@@ -343,7 +343,7 @@
 .quoteBannerLeft {
   flex: 1;
   background: linear-gradient(90deg, #1B4CF0 0%, #3D8EF0 100%);
-  background-image: url('/src/assets/images/quote-banner.png');
+  background-image: url('/images/quote-banner.png');
   background-size: cover;
   background-position: center;
   padding: 40px 48px;

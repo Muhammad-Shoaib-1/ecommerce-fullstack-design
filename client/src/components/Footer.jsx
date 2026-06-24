@@ -71,10 +71,10 @@ function Footer() {
         <div className={styles.appCol}>
           <h6 className={styles.colTitle}>Get app</h6>
           <a href="#" className={styles.appBtn}>
-            <img src="/src/assets/images/backgroun.png" alt="App Store" className={styles.appBtnImg} />
+            <img src="/images/backgroun.png" alt="App Store" className={styles.appBtnImg} />
           </a>
           <a href="#" className={styles.appBtn}>
-            <img src="/src/assets/images/backgroun.png" alt="Google Play" className={styles.appBtnImg} />
+            <img src="/images/backgroun.png" alt="Google Play" className={styles.appBtnImg} />
           </a>
         </div>
 
@@ -84,7 +84,7 @@ function Footer() {
       <div className={styles.footerBottom}>
         <span className={styles.copyright}>© 2023 Ecommerce.</span>
         <div className={styles.langSelector}>
-          <img src="/src/assets/images/us-flag.png" alt="US" className={styles.flagIcon} />
+          <img src="/images/us-flag.png" alt="US" className={styles.flagIcon} />
           <span>English</span>
           <FiChevronUp size={16} />
         </div>
