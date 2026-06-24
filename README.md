@@ -15,11 +15,11 @@ A full-stack ecommerce web application built with the MERN stack (MongoDB, Expre
 
 | Home Page | Product Listing | Product Detail |
 |-----------|----------------|----------------|
-| ![Home](./client/images/Home-page.jpg) | ![Listing](./client/images/Products.jpg) | ![Detail](./client/images/Product-Details.jpg) |
+| ![Home](./client/public/images/Home-page.jpg) | ![Listing](./client/public/images/Products.jpg) | ![Detail](./client/public/images/Product-Details.jpg) |
 
 | Cart | Admin Panel | Mobile |
 |------|-------------|--------|
-| ![Cart](./client/images/Cart.jpg) | ![Admin](./client/images/Admin.jpg) | ![Mobile](./client/images/Mobile-responsive.jpg) |
+| ![Cart](./client/public/images/Cart.jpg) | ![Admin](./client/public/images/Admin.jpg) | ![Mobile](./client/public/images/Mobile-responsive.jpg) |
 
 ---
 
