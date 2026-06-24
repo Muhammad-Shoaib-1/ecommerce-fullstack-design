@@ -11,7 +11,7 @@ const mainNavItems = [
 
 const secondaryNavItems = [
   { icon: '🌐', label: 'English | USD', to: '#' },
-  { icon: '🎧', label: 'Contact us', to: '#' },
+  { icon: '🎧', label: 'Contact us', to: '/contact' },
   { icon: '🏢', label: 'About', to: '#' },
 ]
 

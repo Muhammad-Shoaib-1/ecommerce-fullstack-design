@@ -49,8 +49,13 @@ function Footer() {
         {/* Col 4 — Information */}
         <div className={styles.linkCol}>
           <h6 className={styles.colTitle}>Information</h6>
-          {['Help Center', 'Money Refund', 'Shipping', 'Contact us'].map((link) => (
-            <Link key={link} to="#" className={styles.colLink}>{link}</Link>
+          {[
+            { label: 'Help Center',  to: '#'        },
+            { label: 'Money Refund', to: '#'        },
+            { label: 'Shipping',     to: '#'        },
+            { label: 'Contact us',   to: '/contact' },
+          ].map(({ label, to }) => (
+            <Link key={label} to={to} className={styles.colLink}>{label}</Link>
           ))}
         </div>
 
@@ -66,10 +71,10 @@ function Footer() {
         <div className={styles.appCol}>
           <h6 className={styles.colTitle}>Get app</h6>
           <a href="#" className={styles.appBtn}>
-            <img src="/src/assets/images/background.png" alt="App Store" className={styles.appBtnImg} />
+            <img src="/src/assets/images/backgroun.png" alt="App Store" className={styles.appBtnImg} />
           </a>
           <a href="#" className={styles.appBtn}>
-            <img src="/src/assets/images/background.png" alt="Google Play" className={styles.appBtnImg} />
+            <img src="/src/assets/images/backgroun.png" alt="Google Play" className={styles.appBtnImg} />
           </a>
         </div>
 
