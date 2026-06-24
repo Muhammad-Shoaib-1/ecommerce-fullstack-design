@@ -6,8 +6,8 @@ A full-stack ecommerce web application built with the MERN stack (MongoDB, Expre
 
 ## 🖥️ Live Demo
 
-> Frontend: `http://localhost:5173`
-> Backend API: `http://localhost:5000/api`
+> Frontend: `https://ecommerce-fullstack-design-phi.vercel.app/`
+> Backend API: `https://ecommerce-backend-17n9.onrender.com/api`
 
 ---
 
